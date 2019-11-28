@@ -6,7 +6,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-//全局解决跨域问题
+//全局解决跨域问题123
 @Configuration
 public class CrossDomain {
     private CorsConfiguration buildConfig() {
