@@ -9,6 +9,8 @@ public enum ResultEnum {
 
     SYSTEM_ERROR(-1,"system error"),
 
+    ACCOUNT_EXIST(2,"account exist"),
+
     PASS_ERROR(1,"password error"),
 
     SUCCESS(0,"success"),

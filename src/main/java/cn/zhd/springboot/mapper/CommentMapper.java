@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CommentMapper {
-    @Select("SELECT * FROM comment WHERE commentAreaId=#{commentAreaId}")
+    @Select("SELECT * FROM comment WHERE commentAreaId=#{commentAreaId} ORDER BY commentId DESC")
     List <Comment> getCommentByCommentAreaId(Integer commentAreaId);
 
     @Insert("INSERT INTO comment(reviewerName,content,datetime,commentAreaId)VALUES(#{reviewerName},#{content},#{datetime},#{commentAreaId})")

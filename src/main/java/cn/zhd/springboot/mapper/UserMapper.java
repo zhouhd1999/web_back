@@ -1,6 +1,7 @@
 package cn.zhd.springboot.mapper;
 
 import cn.zhd.springboot.entity.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -16,4 +17,7 @@ public interface UserMapper {
 
     @Select("SELECT * FROM user WHERE userId=#{userId}")
     User getUserByUserId(String userId);
+
+    @Insert("INSERT INTO user(userId,password,nickName,permission)VALUES(#{userId},#{password},#{nickName},#{permission})")
+    void insertUser(User user);
 }

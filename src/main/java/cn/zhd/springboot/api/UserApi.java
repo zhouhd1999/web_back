@@ -37,4 +37,15 @@ public class UserApi {
         }
     }
 
+
+    @RequestMapping("/insertUser")
+    public Msg<Object> insertUser(User user){
+        //先判断账号是否存在
+        if(userService.getUserByUserId(user.getUserId())==null){
+            userService.insertUser(user);
+            return ResultUtil.success();
+        }else{
+            return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
+        }
+    }
 }
