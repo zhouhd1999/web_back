@@ -37,6 +37,15 @@ public class UserApi {
         }
     }
 
+    @RequestMapping("/getUserMessage")
+    public Msg<Object> getUserMessage(String userId){
+        User user = userService.getUserByUserId(userId);
+        if(userService.getUserByUserId(user.getUserId())!=null){
+            return ResultUtil.success(user);
+        }else{
+            return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
+        }
+    }
 
     @RequestMapping("/insertUser")
     public Msg<Object> insertUser(User user){
@@ -47,5 +56,11 @@ public class UserApi {
         }else{
             return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
         }
+    }
+
+    @RequestMapping("/updateUser")
+    public Msg<Object> updateUser(User user){
+        userService.updateUser(user);
+        return ResultUtil.success();
     }
 }
