@@ -58,9 +58,9 @@ public class UserApi {
         }
     }
 
-    @RequestMapping("/updateUser")
-    public Msg<Object> updateUser(User user){
-        userService.updateUser(user);
-        return ResultUtil.success();
-    }
+//    @RequestMapping("/updateUser")
+//    public Msg<Object> updateUser(User user){
+//        userService.updateUser(user);
+//        return ResultUtil.success();
+//    }
 }

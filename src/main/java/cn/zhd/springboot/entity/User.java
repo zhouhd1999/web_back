@@ -14,8 +14,6 @@ public class User {
     Integer uid;
     String userId;
     String password;
-    String tell;
-    String nickName;
-    String introduction;
+    String nickname;
     Integer permission;
 }

@@ -14,5 +14,5 @@ public class Comment {
     Integer commentAreaId;
     String reviewerName;
     String content;
-    String datetime;
+    String dateTime;
 }

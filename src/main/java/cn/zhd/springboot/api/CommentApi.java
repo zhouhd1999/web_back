@@ -33,7 +33,7 @@ public class CommentApi {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = df.format(date);
-        comment.setDatetime(time);
+        comment.setDateTime(time);
         commentService.insertComment(comment);
         return ResultUtil.success();
     }
