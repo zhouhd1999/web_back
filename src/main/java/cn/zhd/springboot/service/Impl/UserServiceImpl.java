@@ -1,6 +1,7 @@
 package cn.zhd.springboot.service.Impl;
 
 import cn.zhd.springboot.entity.User;
+import cn.zhd.springboot.mapper.InformationMapper;
 import cn.zhd.springboot.mapper.UserMapper;
 import cn.zhd.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+    private final InformationMapper informationMapper;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper){this.userMapper=userMapper;}
+    public UserServiceImpl(UserMapper userMapper, InformationMapper informationMapper){this.userMapper=userMapper;
+        this.informationMapper = informationMapper;
+    }
 
     @Override
     public List<User> getAll() {
@@ -22,15 +26,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUserId(String userId){
-        return userMapper.getUserByUserId(userId);
+    public User loginByUserId(String userId,String password){
+        User user = userMapper.getUserByUserId(userId);
+        if (password.equals(user.getPassword())){
+            user.setPassword("******");
+            return user;
+        }else {
+            return null;
+        }
     }
 
     @Override
-    public void insertUser(User user){
-        userMapper.insertUser(user);
+    public User getUserByUserId(String userId) {
+        User user = userMapper.getUserByUserId(userId);
+        return user;
     }
 
-//    @Override
-//    public void updateUser(User user) { userMapper.updateUser(user); }
+
+    @Override
+    public boolean insertUser(User user){
+        if(userMapper.getUserByUserId(user.getUserId())==null){
+            userMapper.insertUser(user);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public void updateUser(User user) { userMapper.updateUser(user); }
 }

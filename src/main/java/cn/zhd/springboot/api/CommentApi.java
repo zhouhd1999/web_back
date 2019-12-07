@@ -22,13 +22,13 @@ public class CommentApi {
         this.commentService = commentService;
     }
 
-    @RequestMapping("/getComment")
+    @RequestMapping("/get_comment")
     public Msg<Object> GetComment(Integer commentAreaId){
         List<Comment> comment=commentService.getCommentByCommentAreaId(commentAreaId);
         return ResultUtil.success(comment);
     }
 
-    @RequestMapping("/submitComment")
+    @RequestMapping("/submit_comment")
     public Msg<Object> SubmitComment(Comment comment){
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

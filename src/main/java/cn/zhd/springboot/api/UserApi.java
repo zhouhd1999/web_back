@@ -2,6 +2,7 @@ package cn.zhd.springboot.api;
 
 import cn.zhd.springboot.entity.User;
 import cn.zhd.springboot.enums.ResultEnum;
+import cn.zhd.springboot.service.InformationService;
 import cn.zhd.springboot.service.UserService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
@@ -15,10 +16,12 @@ import java.util.List;
 @RestController
 public class UserApi {
     private final UserService userService;
+    private final InformationService informationService;
 
     @Autowired
-    public UserApi(UserService userService) {
+    public UserApi(UserService userService, InformationService informationService) {
         this.userService=userService;
+        this.informationService = informationService;
     }
 
     @RequestMapping("/get_all")
@@ -27,40 +30,40 @@ public class UserApi {
     }
 
 
-    @RequestMapping("/Login")
-    public Msg<Object> Login(String name,String pass){
-        User user = userService.getUserByUserId(name);
-        if (pass.equals(user.getPassword())){
+    @RequestMapping("/login")
+    public Msg<Object> login(String UserId,String password){
+        User user = userService.loginByUserId(UserId,password);
+        if (user!=null){
             return ResultUtil.success(user);
-        }else {
+        }else{
             return ResultUtil.error(ResultEnum.PASS_ERROR);
         }
     }
 
-    @RequestMapping("/getUserMessage")
-    public Msg<Object> getUserMessage(String userId){
-        User user = userService.getUserByUserId(userId);
-        if(userService.getUserByUserId(user.getUserId())!=null){
-            return ResultUtil.success(user);
-        }else{
-            return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
-        }
-    }
+//    @RequestMapping("/getUserMessage")
+//    public Msg<Object> getUserMessage(String userId){
+//        User user = userService.getUserByUserId(userId);
+//        if(userService.getUserByUserId(user.getUserId())!=null){
+//            return ResultUtil.success(user);
+//        }else{
+//            return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
+//        }
+//    }
 
-    @RequestMapping("/insertUser")
+    @RequestMapping("/insert_user")
     public Msg<Object> insertUser(User user){
-        //先判断账号是否存在
-        if(userService.getUserByUserId(user.getUserId())==null){
-            userService.insertUser(user);
+        if (userService.insertUser(user)){
+            Integer uid=userService.getUserByUserId(user.getUserId()).getUid();
+            informationService.insertInformationByUid(uid);
             return ResultUtil.success();
         }else{
             return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
         }
     }
 
-//    @RequestMapping("/updateUser")
-//    public Msg<Object> updateUser(User user){
-//        userService.updateUser(user);
-//        return ResultUtil.success();
-//    }
+    @RequestMapping("/update_user")
+    public Msg<Object> updateUser(User user){
+        userService.updateUser(user);
+        return ResultUtil.success();
+    }
 }
