@@ -8,8 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Discusstion {
+
     Integer uid;
+
     String deDateTime;
+
     String deContent;
+
     String deName;
 }

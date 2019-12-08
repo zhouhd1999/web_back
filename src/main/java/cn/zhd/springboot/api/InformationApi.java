@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/information")
 @RestController
 public class InformationApi {
+
     private final InformationServiceImpl informationServiceImpl;
 
     @Autowired

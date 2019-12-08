@@ -13,6 +13,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
+
     @Select("SELECT * FROM user")
     List<User> getAll();
 

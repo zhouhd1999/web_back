@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CommentMapper {
+
     @Select("SELECT * FROM comment WHERE comment_area_id=#{commentAreaId} ORDER BY comment_id DESC")
     List <Comment> getCommentByCommentAreaId(Integer commentAreaId);
 

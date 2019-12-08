@@ -13,6 +13,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+
     private final InformationMapper informationMapper;
 
     @Autowired

@@ -11,9 +11,14 @@ import javax.annotation.sql.DataSourceDefinition;
 @NoArgsConstructor //生成无参构造函数
 
 public class User {
+
     Integer uid;
+
     String userId;
+
     String password;
+
     String nickname;
+
     Integer permission;
 }

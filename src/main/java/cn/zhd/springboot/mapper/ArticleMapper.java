@@ -29,6 +29,7 @@ public interface ArticleMapper {
     List<Article> getArticleByLike();
 
                             //    Integer aid;        //文章ID
+                            //    Integer aStatus;    //文章状态 {1、审核中，0、审核通过，2、审核失败}
                             //    Integer uid;        //文章发布人ID
                             //    Integer tid;        //文章标签ID
                             //    Integer deId;       //文章评论区id
@@ -39,7 +40,7 @@ public interface ArticleMapper {
                             //    Integer aHits;      //文章点击数
                             //    String aName;       //文章名
     //增加文章
-    @Insert("INSERT INTO article(uid,t_id, a_content,a_describe,a_date_time,a_name)VALUES(#{uid},#{tId},#{aContent},#{aDescribe},#{aDateTime},#{aName})")
+    @Insert("INSERT INTO article(uid,t_id,a_state, a_content,a_describe,a_date_time,a_name)VALUES(#{uid},#{tId},#{aState},#{aContent},#{aDescribe},#{aDateTime},#{aName})")
     int insertArticle(Article article);
     //删除文章
     @Delete("DELETE FROM article WHERE a_id = #{aId}")

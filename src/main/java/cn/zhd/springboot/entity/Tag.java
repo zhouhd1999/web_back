@@ -1,6 +1,5 @@
 package cn.zhd.springboot.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tag {
-    Integer tId;
-    String tName;
+
+    private Integer tId;
+
+    private String tName;
 }

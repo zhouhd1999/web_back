@@ -17,12 +17,15 @@ import java.util.List;
 @RequestMapping("/article")
 @RestController
 public class ArticleApi {
+
     private  final ArticleService articleService;
+
     @Autowired
     public ArticleApi(ArticleService articleService)
     {
         this.articleService = articleService;
     }
+    
     @RequestMapping("/get_article")
     public Msg<Object> getArticle()
     {
@@ -42,6 +45,7 @@ public class ArticleApi {
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
         }
     }
+
     @RequestMapping("delete_article")
     public Msg<Object> deleteArticle(Integer aId){
         if(articleService.deleteArticle(aId)){
@@ -50,6 +54,7 @@ public class ArticleApi {
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
         }
     }
+
     @RequestMapping("update_article")
     public Msg<Object> updateArticle(Article article){
         if(articleService.updateArticle(article)){

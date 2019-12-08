@@ -8,9 +8,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Information {
+
     Integer uid;
+
     Integer inAge;
+
     String inPhoneNumber;
+
     String inProfession;
+
     String inIntroduction;
 }

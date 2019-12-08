@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Advertisiong {
+
     Integer adID;
+
     String adContent;
+
     String adUrl;
 
 

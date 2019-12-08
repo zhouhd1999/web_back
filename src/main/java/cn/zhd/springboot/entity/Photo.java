@@ -8,8 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Photo {
+
     Integer pId;
+
     Integer pTagId;
+
     String purl;
+
     String pTagName;
 }
