@@ -48,5 +48,20 @@ public class ArticleServiceImpl implements ArticleService {
         return getArticleByLike();
     }
 
+    @Override
+    public boolean insertArticle(Article article) {
+        return articleMapper.insertArticle(article) != 0;
+    }
+
+    @Override
+    public boolean deleteArticle(Integer a_id) {
+        return articleMapper.deleteArticle(a_id) != 0;
+    }
+
+    @Override
+    public boolean updateArticle(Article article) {
+        return articleMapper.updateArticle(article) != 0;
+    }
+
 
 }

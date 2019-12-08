@@ -17,6 +17,11 @@ public interface ArticleService {
     //获得按照点击数排序的文章
     List<Article> getArticleByHits();
     //获得按照赞排序的文章
-     List<Article> getArticleByLike();
-
+    List<Article> getArticleByLike();
+     //增加文章
+     boolean insertArticle(Article article);
+    //删除文章
+     boolean deleteArticle(Integer a_id);
+     //修改文章
+     boolean updateArticle(Article article);
 }
