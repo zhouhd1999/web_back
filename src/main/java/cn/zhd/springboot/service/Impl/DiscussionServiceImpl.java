@@ -1,9 +1,6 @@
 package cn.zhd.springboot.service.Impl;
-import cn.zhd.springboot.entity.Comment;
 import cn.zhd.springboot.entity.Discussion;
-import cn.zhd.springboot.mapper.CommentMapper;
 import cn.zhd.springboot.mapper.DiscussionMapper;
-import cn.zhd.springboot.service.CommentService;
 import cn.zhd.springboot.service.DiscussionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
