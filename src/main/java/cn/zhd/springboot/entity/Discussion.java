@@ -7,13 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Advertisiong {
-
-    Integer adID;
-
-    String adContent;
-
-    String adUrl;
-
-
+public class Discussion {
+    Integer uid;
+    String diDateTime;
+    String diContent;
+    Integer diId;
+    Integer aId;
 }
