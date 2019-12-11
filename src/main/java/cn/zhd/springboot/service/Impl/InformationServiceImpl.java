@@ -17,8 +17,8 @@ public class InformationServiceImpl implements InformationService {
     }
 
     @Override
-    public Information getInformationByUserAccount(String userAccount) {
-        return informationMapper.getInformationByUserAccount(userAccount);
+    public Information getInformationByUserId(Integer userId) {
+        return informationMapper.getInformationByUserId(userId);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class InformationServiceImpl implements InformationService {
     }
 
     @Override
-    public void insertInformationByUserAccount(String userAccount) {
-        informationMapper.insertInformationByUserAccount(userAccount);
+    public void insertInformationByUserId(Integer userId) {
+        informationMapper.insertInformationByUserId(userId);
     }
 }

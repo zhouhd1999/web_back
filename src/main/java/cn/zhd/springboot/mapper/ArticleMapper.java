@@ -28,7 +28,7 @@ public interface ArticleMapper {
     @Select("SELECT * FROM article ORDER BY article_like desc LIMIT 5")
     List<Article> getArticleByLike();
 
-    @Insert("INSERT INTO article(user_account,tag_id,article_state, article_content,article_describe,article_date_time,article_name)VALUES(#{userAccount},#{tagId},#{articleState},#{articleContent},#{articleDescribe},#{articleDateTime},#{articleName})")
+    @Insert("INSERT INTO article(user_id,tag_id,article_state, article_content,article_describe,article_date_time,article_name)VALUES(#{userId},#{tagId},#{articleState},#{articleContent},#{articleDescribe},#{articleDateTime},#{articleName})")
     int insertArticle(Article article);
     //删除文章
     @Delete("DELETE FROM article WHERE article_id = #{articleId}")
