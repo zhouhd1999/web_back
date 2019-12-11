@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Information {
 
-    Integer uid;
+    Integer userId;
 
-    Integer inAge;
+    Integer infoAge;
 
-    String inPhoneNumber;
+    String infoPhoneNumber;
 
-    String inProfession;
+    String infoProfession;
 
-    String inIntroduction;
+    String infoIntroduction;
 }

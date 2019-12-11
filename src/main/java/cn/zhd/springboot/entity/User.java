@@ -12,13 +12,13 @@ import javax.annotation.sql.DataSourceDefinition;
 
 public class User {
 
-    Integer uid;
+    Integer userId;
 
-    String userId;
+    String userAccount;
 
-    String password;
+    String userPassword;
 
-    String nickname;
+    String userNickname;
 
-    Integer permission;
+    Integer userPermission;
 }

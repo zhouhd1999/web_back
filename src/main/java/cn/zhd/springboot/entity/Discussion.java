@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Discussion {
-    Integer uid;
-    String diDateTime;
-    String diContent;
-    Integer diId;
-    Integer aId;
+    Integer userId;
+    String discussionDateTime;
+    String discussionContent;
+    Integer discussionId;
+    Integer articleId;
 }

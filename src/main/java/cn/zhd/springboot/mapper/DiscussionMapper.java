@@ -1,6 +1,7 @@
 package cn.zhd.springboot.mapper;
 
 import cn.zhd.springboot.entity.Discussion;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -14,9 +15,12 @@ import java.util.List;
 @Mapper
 @Repository
 public interface DiscussionMapper {
-    @Select("SELECT * FROM discussion WHERE a_id = #{aId} ORDER BY uid DESC")
-    List<Discussion>getDiscussionByAid(Integer aId);
+    @Select("SELECT * FROM discussion WHERE article_id = #{articleId} ORDER BY user_id DESC")
+    List<Discussion>getDiscussionByAid(Integer articleId);
 
-    @Insert("INSERT INTO discussion(uid,di_content,di_date_time,a_id)VALUES(#{uid},#{diContent},#{diDateTime},#{aId})")
+    @Insert("INSERT INTO discussion(user_id,discussion_content,discussion_date_time,article_id)VALUES(#{userId},#{discussionContent},#{discussionDateTime},#{articleId})")
     boolean insertDiscussion(Discussion discussion);
+
+    @Delete("delete from discussion where discussion_id = #{discussionId}")
+    boolean deleteDiscussion(Integer discussionId);
 }

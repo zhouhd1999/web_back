@@ -33,12 +33,12 @@ public class ArticleApi {
         return ResultUtil.success(articles);
     }
 
-    @RequestMapping("insert_article")
+    @RequestMapping("/insert_article")
     public Msg<Object> insertArticle(Article article){
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = df.format(date);
-        article.setADateTime(time);
+        article.setArticleDateTime(time);
         if(articleService.insertArticle(article)){
             return ResultUtil.success();
         }else {
@@ -47,8 +47,8 @@ public class ArticleApi {
     }
 
     @RequestMapping("delete_article")
-    public Msg<Object> deleteArticle(Integer aId){
-        if(articleService.deleteArticle(aId)){
+    public Msg<Object> deleteArticle(Integer articleId){
+        if(articleService.deleteArticle(articleId)){
             return ResultUtil.success();
         }else {
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR);

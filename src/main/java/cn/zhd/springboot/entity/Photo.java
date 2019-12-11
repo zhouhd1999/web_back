@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Photo {
 
-    Integer pId;
+    Integer photoId;
 
-    Integer pTagId;
+    Integer photoTagId;
 
-    String purl;
+    String photoUrl;
 
-    String pTagName;
+    String photoCategory;
 }

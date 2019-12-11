@@ -13,11 +13,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
-
     private final InformationMapper informationMapper;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, InformationMapper informationMapper){this.userMapper=userMapper;
+    public UserServiceImpl(UserMapper userMapper, InformationMapper informationMapper){
+        this.userMapper=userMapper;
         this.informationMapper = informationMapper;
     }
 
@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginByUserId(String userId,String password){
         User user = userMapper.getUserByUserId(userId);
-        if (password.equals(user.getPassword())){
-            user.setPassword("******");
+        if (password.equals(user.getUserPassword())){
+            user.setUserPassword("******");
             return user;
         }else {
             return null;
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean insertUser(User user){
-        if(userMapper.getUserByUserId(user.getUserId())==null){
+        if(userMapper.getUserByUserId(user.getUserId().toString())==null){
             userMapper.insertUser(user);
             return true;
         }else{

@@ -9,25 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Article {
 
-    Integer aId;        //文章ID
-
-    Integer uid;        //文章发布人ID
-
-    Integer tId;        //文章标签ID
-
-    Integer aState;    //文章状态值
-
-    String aContent;    //文章内容
-
-    String aDateTime;    //文章发布时间
-
-    Integer aLick;      //文章赞数
-
-    Integer aHate;      //文章踩数
-
-    Integer aHits;      //文章点击数
-
-    String aDescribe;   //文章描述
-
-    String aName;       //文章名
+    Integer articleId;        //文章ID
+    Integer userId;        //文章发布人ID
+    Integer tagId;        //文章标签ID
+    Integer articleState;    //文章状态值
+    String articleContent;    //文章内容
+    String articleDateTime;    //文章发布时间
+    Integer articleLick;      //文章赞数
+    Integer articleHate;      //文章踩数
+    Integer articleClickNum;      //文章点击数
+    String articleDescribe;   //文章描述
+    String articleName;       //文章名
 }

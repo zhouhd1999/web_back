@@ -55,7 +55,7 @@ public class UserApi {
     @RequestMapping("/insert_user")
     public Msg<Object> insertUser(User user){
         if (userService.insertUser(user)){
-            Integer uid=userService.getUserByUserId(user.getUserId()).getUid();
+            Integer uid=userService.getUserByUserId(user.getUserId().toString()).getUserId();
             informationService.insertInformationByUid(uid);
             return ResultUtil.success();
         }else{

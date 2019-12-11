@@ -24,23 +24,23 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> getArticleByName(String name) {
-        return articleMapper.getArticleByName(name);
+    public List<Article> getArticleByName(String articleName) {
+        return articleMapper.getArticleByName(articleName);
     }
 
     @Override
-    public List<Article> getArticleByDateTime(String datetime) {
-        return articleMapper.getArticleByDateTime(datetime);
+    public List<Article> getArticleByDateTime(String articleDateTime) {
+        return articleMapper.getArticleByDateTime(articleDateTime);
     }
 
     @Override
-    public List<Article> getArticleByTag(int tid) {
-        return articleMapper.getArticleByTag(tid);
+    public List<Article> getArticleByTag(int tagId) {
+        return articleMapper.getArticleByTag(tagId);
     }
 
     @Override
-    public List<Article> getArticleByHits() {
-        return getArticleByHits();
+    public List<Article> getArticleByClick() {
+        return getArticleByClick();
     }
 
     @Override
@@ -50,12 +50,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public boolean insertArticle(Article article) {
-        return articleMapper.insertArticle(article) != 0;
+        return articleMapper.insertArticle(article)!=0 ;
     }
 
     @Override
-    public boolean deleteArticle(Integer a_id) {
-        return articleMapper.deleteArticle(a_id) != 0;
+    public boolean deleteArticle(Integer articleId) {
+        return articleMapper.deleteArticle(articleId) != 0;
     }
 
     @Override

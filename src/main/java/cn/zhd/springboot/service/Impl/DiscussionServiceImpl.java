@@ -18,9 +18,11 @@ public class DiscussionServiceImpl implements DiscussionService {
     public DiscussionServiceImpl(DiscussionMapper discussionMapper){this.discussionMapper = discussionMapper;}
 
     @Override
-    public List<Discussion>getDiscussionByAid(Integer aId){
-        return discussionMapper.getDiscussionByAid(aId);
+    public List<Discussion>getDiscussionByAid(Integer articleId){
+        return discussionMapper.getDiscussionByAid(articleId);
     }
     @Override
     public boolean insertDiscussion(Discussion discussion){return(discussionMapper.insertDiscussion(discussion));}
+    @Override
+    public boolean deleteDiscussion(Integer discussionId){return (discussionMapper.deleteDiscussion(discussionId));}
 }

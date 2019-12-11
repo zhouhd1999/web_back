@@ -26,8 +26,8 @@ public class DiscussionApi {
     public DiscussionApi(DiscussionService discussionService){this.discussionService = discussionService;}
 
     @RequestMapping("/get_discussion")
-    public Msg<Object> getDiscussion(Integer aId){
-        List<Discussion> discussion = discussionService.getDiscussionByAid(aId);
+    public Msg<Object> getDiscussion(Integer articleId){
+        List<Discussion> discussion = discussionService.getDiscussionByAid(articleId);
         return ResultUtil.success(discussion);
     }
 
@@ -36,8 +36,17 @@ public class DiscussionApi {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = df.format(date);
-        discussion.setDiDateTime(time);
+        discussion.setDiscussionDateTime(time);
         if(discussionService.insertDiscussion(discussion)){
+            return ResultUtil.success();
+        }else{
+            return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+    }
+
+    @RequestMapping("/delete_discussion")
+    public Msg<Object>DeleteDiscussion(Integer discussionId){
+        if(discussionService.deleteDiscussion(discussionId)){
             return ResultUtil.success();
         }else{
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
