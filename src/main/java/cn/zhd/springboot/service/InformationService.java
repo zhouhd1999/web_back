@@ -4,9 +4,9 @@ import cn.zhd.springboot.entity.Information;
 
 public interface InformationService {
 
-    Information getInformationByUserId(Integer userId);
+    Information getInformationByUserAccount(String userAccount);
 
     void updateInformation(Information information);
 
-    void insertInformationByUserId(Integer userId);
+    void insertInformationByUserAccount(String userAccount);
 }

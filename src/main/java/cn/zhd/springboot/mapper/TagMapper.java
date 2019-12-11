@@ -13,4 +13,5 @@ public interface TagMapper {
 
     @Select("SELECT * FROM tag")
     List<Tag> getAllTag();
+
 }

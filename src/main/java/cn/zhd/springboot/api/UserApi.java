@@ -55,8 +55,8 @@ public class UserApi {
     @RequestMapping("/insert_user")
     public Msg<Object> insertUser(User user){
         if (userService.insertUser(user)){
-            Integer userId=userService.getUserByUserAccount(user.getUserAccount()).getUserId();
-            informationService.insertInformationByUserId(userId);
+           String userAcount=userService.getUserByUserAccount(user.getUserAccount()).getUserAccount();
+            informationService.insertInformationByUserAccount(userAcount);
             return ResultUtil.success();
         }else{
             return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);

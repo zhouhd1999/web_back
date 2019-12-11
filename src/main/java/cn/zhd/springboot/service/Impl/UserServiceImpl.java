@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginByUserAccount(String userAccount,String password){
         User user = userMapper.getUserByUserAccount(userAccount);
-        System.out.println(user);
         if (password.equals(user.getUserPassword())){
             user.setUserPassword("******");
             return user;
@@ -40,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUserAccount(String userAccount) {
-        return userMapper.getUserByUserAccount(userAccount);
+        User user = userMapper.getUserByUserAccount(userAccount);
+        return user;
     }
 
 

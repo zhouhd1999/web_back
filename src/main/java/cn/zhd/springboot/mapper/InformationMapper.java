@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InformationMapper {
 
-    @Select("SELECT * FROM information WHERE user_id=#{userId}")
-    Information getInformationByUserId(Integer userId);
+    @Select("SELECT * FROM information WHERE uid=#{uid}")
+    Information getInformationByUid(Integer uid);
 
-    @Update("UPDATE information SET info_age=#{infoAge},info_phone_number=#{infoPhoneNumber},info_profession=#{infoProfession},info_introduction=#{infoIntroduction} WHERE user_id=#{userId}")
+    @Update("UPDATE information SET in_age=#{inAge},in_phone_number=#{inPhoneNumber},in_profession=#{inProfession},in_introduction=#{inIntroduction} WHERE uid=#{uid}")
     void updateInformation(Information information);
 
-    @Insert("INSERT INTO information (user_id) VALUES(#{userId}) ")
-    void insertInformationByUserId(Integer userId);
+    @Insert("INSERT INTO information (uid) VALUES(#{uid}) ")
+    void insertInformationByUid(Integer uid);
 }
