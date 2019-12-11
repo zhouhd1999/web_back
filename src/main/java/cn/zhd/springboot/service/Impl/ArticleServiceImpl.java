@@ -40,17 +40,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getArticleByClick() {
-        return getArticleByClick();
+        return articleMapper.getArticleByClick();
     }
 
     @Override
     public List<Article> getArticleByLike() {
-        return getArticleByLike();
+        return articleMapper.getArticleByLike();
     }
 
     @Override
     public boolean insertArticle(Article article) {
-        return articleMapper.insertArticle(article)!=0 ;
+        return articleMapper.insertArticle(article) != 0 ;
     }
 
     @Override
@@ -61,6 +61,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean updateArticle(Article article) {
         return articleMapper.updateArticle(article) != 0;
+    }
+
+    @Override
+    public boolean likeArticle(Integer articleId) {
+        return articleMapper.likeArticle(articleId) != 0;
+    }
+
+    @Override
+    public Article getArticleByArticleId(Integer articleId) {
+        return articleMapper.getArticleByArticleId(articleId);
     }
 
 

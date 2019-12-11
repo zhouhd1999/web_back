@@ -7,9 +7,9 @@ import java.util.List;
 public interface UserService {
     List<User> getAll();
 
-    User loginByUserId(String userId,String password);
+    User loginByUserAccount(String userAccount,String password);
 
-    User getUserByUserId(String userId);
+    User getUserByUserAccount(String userAccount);
 
     boolean insertUser(User user);
 

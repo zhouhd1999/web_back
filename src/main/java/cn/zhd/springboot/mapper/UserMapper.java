@@ -17,12 +17,12 @@ public interface UserMapper {
     @Select("SELECT * FROM user")
     List<User> getAll();
 
-    @Select("SELECT * FROM user WHERE user_id=#{userId}")
-    User getUserByUserId(String userId);
+    @Select("SELECT * FROM user WHERE user_account=#{userAccount}")
+    User getUserByUserAccount(String userAccount);
 
-    @Insert("INSERT INTO user(user_id,password,nickname,permission)VALUES(#{userId},#{password},#{nickname},#{permission})")
+    @Insert("INSERT INTO user(user_account,user_password,user_nickname,user_permission)VALUES(#{userAccount},#{userPassword},#{userNickname},#{userPermission})")
     void insertUser(User user);
 
-    @Update("UPDATE user SET nickname=#{nickname} WHERE user_id=#{userId}")
+    @Update("UPDATE user SET user_nickname=#{userNickname} WHERE user_account=#{userAccount}")
     void updateUser(User user);
 }

@@ -22,9 +22,9 @@ public class InformationApi {
         this.informationServiceImpl = informationServiceImpl;
     }
 
-    @RequestMapping("/get_information_by_uid")
-    public Msg<Object> getInformationByUid(Integer uid){
-        Information information = informationServiceImpl.getInformationByUid(uid);
+    @RequestMapping("/get_information_by_user_id")
+    public Msg<Object> getInformationByUserId(Integer userId){
+        Information information = informationServiceImpl.getInformationByUserId(userId);
         if(information!=null){
             return ResultUtil.success(information);
         }else{

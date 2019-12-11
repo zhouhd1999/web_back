@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ArticleMapper {
     //获得全部的文章
-    @Select("SELECT * FROM article")
+    @Select("SELECT * FROM article ORDER BY article_date_time DESC")
     List<Article> getArticleByAll();
     //获得标题内有指定字符串的文章（搜索功能）
     @Select("SELECT * FROM article WHERE article_name LIKE '%#{articleName}%'")
@@ -24,8 +24,8 @@ public interface ArticleMapper {
     //获得按照点击数排序的文章
     @Select("SELECT * FROM article ORDER BY article_click_num desc")
     List<Article> getArticleByClick();
-    //获得按照赞排序的文章
-    @Select("SELECT * FROM article ORDER BY article_like desc")
+    //获得按照赞排序的5条文章
+    @Select("SELECT * FROM article ORDER BY article_like desc LIMIT 5")
     List<Article> getArticleByLike();
 
     @Insert("INSERT INTO article(user_id,tag_id,article_state, article_content,article_describe,article_date_time,article_name)VALUES(#{userId},#{tagId},#{articleState},#{articleContent},#{articleDescribe},#{articleDateTime},#{articleName})")
@@ -37,4 +37,10 @@ public interface ArticleMapper {
     @Update("UPDATE article SET tag_id = #{tagId},article_name = #{articleName}, article_content = #{articleContent} WHERE article_id = #{articleId}")
     int updateArticle(Article article);
 
+    //文章带赞数+1
+    @Update(("UPDATE article SET article_like = article_like + 1 WHERE article_id = #{articleId}"))
+    int likeArticle(Integer articleId);
+
+    @Select("SELECT * FROM article WHERE article_id = #{articleId}")
+    Article getArticleByArticleId(Integer articleId);
 }

@@ -15,7 +15,7 @@ public class Article {
     Integer articleState;    //文章状态值
     String articleContent;    //文章内容
     String articleDateTime;    //文章发布时间
-    Integer articleLick;      //文章赞数
+    Integer articleLike;      //文章赞数
     Integer articleHate;      //文章踩数
     Integer articleClickNum;      //文章点击数
     String articleDescribe;   //文章描述

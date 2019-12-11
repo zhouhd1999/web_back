@@ -33,8 +33,8 @@ public class UserApi {
 
 
     @RequestMapping("/login")
-    public Msg<Object> login(String UserId,String password){
-        User user = userService.loginByUserId(UserId,password);
+    public Msg<Object> login(String userAccount,String password){
+        User user = userService.loginByUserAccount(userAccount,password);
         if (user!=null){
             return ResultUtil.success(user);
         }else{
@@ -55,8 +55,8 @@ public class UserApi {
     @RequestMapping("/insert_user")
     public Msg<Object> insertUser(User user){
         if (userService.insertUser(user)){
-            Integer uid=userService.getUserByUserId(user.getUserId().toString()).getUserId();
-            informationService.insertInformationByUid(uid);
+            Integer userId=userService.getUserByUserAccount(user.getUserAccount()).getUserId();
+            informationService.insertInformationByUserId(userId);
             return ResultUtil.success();
         }else{
             return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);

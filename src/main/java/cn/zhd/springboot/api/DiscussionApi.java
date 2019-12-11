@@ -32,7 +32,7 @@ public class DiscussionApi {
     }
 
     @RequestMapping("/submit_discussion")
-    public Msg<Object> SubmitDiscussion(Discussion discussion){
+    public Msg<Object> submitDiscussion(Discussion discussion){
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = df.format(date);

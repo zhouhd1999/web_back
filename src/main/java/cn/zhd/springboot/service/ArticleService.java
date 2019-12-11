@@ -24,4 +24,8 @@ public interface ArticleService {
     boolean deleteArticle(Integer articleId);
      //修改文章
     boolean updateArticle(Article article);
+
+    boolean likeArticle(Integer articleId);
+
+    Article getArticleByArticleId(Integer articleId);
 }

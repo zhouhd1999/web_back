@@ -46,7 +46,7 @@ public class ArticleApi {
         }
     }
 
-    @RequestMapping("delete_article")
+    @RequestMapping("/delete_article")
     public Msg<Object> deleteArticle(Integer articleId){
         if(articleService.deleteArticle(articleId)){
             return ResultUtil.success();
@@ -55,7 +55,7 @@ public class ArticleApi {
         }
     }
 
-    @RequestMapping("update_article")
+    @RequestMapping("/update_article")
     public Msg<Object> updateArticle(Article article){
         if(articleService.updateArticle(article)){
             return ResultUtil.success();
@@ -64,4 +64,22 @@ public class ArticleApi {
         }
     }
 
+    @RequestMapping("/get_article_by_like")
+    public Msg<Object> getArticleByLike(){
+        return ResultUtil.success(articleService.getArticleByLike());
+    }
+
+    @RequestMapping("/like_article")
+    public Msg<Object> likeArticle(Integer articleId){
+        if (articleService.likeArticle(articleId)){
+            return ResultUtil.success();
+        }else{
+            return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+    }
+
+    @RequestMapping("/get_article_by_article_id")
+    public Msg<Object> getArticleByArticleId(Integer articleId){
+        return ResultUtil.success(articleService.getArticleByArticleId(articleId));
+    }
 }

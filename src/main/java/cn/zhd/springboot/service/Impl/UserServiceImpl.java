@@ -27,8 +27,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User loginByUserId(String userId,String password){
-        User user = userMapper.getUserByUserId(userId);
+    public User loginByUserAccount(String userAccount,String password){
+        User user = userMapper.getUserByUserAccount(userAccount);
+        System.out.println(user);
         if (password.equals(user.getUserPassword())){
             user.setUserPassword("******");
             return user;
@@ -38,15 +39,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUserId(String userId) {
-        User user = userMapper.getUserByUserId(userId);
-        return user;
+    public User getUserByUserAccount(String userAccount) {
+        return userMapper.getUserByUserAccount(userAccount);
     }
 
 
     @Override
     public boolean insertUser(User user){
-        if(userMapper.getUserByUserId(user.getUserId().toString())==null){
+        if(userMapper.getUserByUserAccount(user.getUserAccount())==null){
             userMapper.insertUser(user);
             return true;
         }else{
