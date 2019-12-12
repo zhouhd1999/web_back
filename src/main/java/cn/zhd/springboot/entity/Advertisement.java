@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class advertisement {
+public class Advertisement {
     Integer adId;        //广告ID
     String adContent;   //广告内容
     String adUrl;

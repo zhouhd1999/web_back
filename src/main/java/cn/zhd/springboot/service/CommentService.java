@@ -8,4 +8,6 @@ public interface CommentService {
     List<Comment> getCommentByCommentAreaId(Integer commentAreaId);
 
     void insertComment(Comment comment);
+
+    boolean deleteComment(Integer commentId);
 }

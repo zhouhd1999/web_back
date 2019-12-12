@@ -18,6 +18,7 @@ public class CommentServiceImpl implements CommentService {
         this.commentMapper = commentMapper;
     }
 
+
     @Override
     public List<Comment> getCommentByCommentAreaId(Integer commentAreaId) {
         return commentMapper.getCommentByCommentAreaId(commentAreaId);
@@ -26,5 +27,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void insertComment(Comment comment) {
         commentMapper.insertComment(comment);
+    }
+
+    @Override
+    public boolean deleteComment(Integer commentId){
+        return commentMapper.deleteComment(commentId)!= 0;
     }
 }

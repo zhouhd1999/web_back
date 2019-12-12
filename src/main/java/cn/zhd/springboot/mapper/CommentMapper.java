@@ -20,5 +20,7 @@ public interface CommentMapper {
     @Insert("INSERT INTO comment(reviewer_name,content,date_time,comment_area_id)VALUES(#{reviewerName},#{content},#{dateTime},#{commentAreaId})")
     void insertComment(Comment comment);
 
+    @Delete("delete from comment where comment_id = #{commentId}")
+    int deleteComment(Integer commentId);
 
 }

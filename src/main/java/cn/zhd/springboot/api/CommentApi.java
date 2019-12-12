@@ -39,4 +39,13 @@ public class CommentApi {
         commentService.insertComment(comment);
         return ResultUtil.success();
     }
+
+    @RequestMapping("/delete_comment")
+    public Msg<Object> deleteComment(Integer commentId){
+        if(commentService.deleteComment(commentId)){
+            return ResultUtil.success();
+        }else {
+            return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+    }
 }
