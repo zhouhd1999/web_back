@@ -2,6 +2,7 @@ package cn.zhd.springboot.mapper;
 
 
 import cn.zhd.springboot.entity.Comment;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
