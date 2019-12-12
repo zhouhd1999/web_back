@@ -4,8 +4,11 @@ package cn.zhd.springboot.api;
 import cn.zhd.springboot.entity.Article;
 import cn.zhd.springboot.enums.ResultEnum;
 import cn.zhd.springboot.service.ArticleService;
+
+import cn.zhd.springboot.service.DirectoryService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,13 +24,68 @@ import java.util.Date;
 @RequestMapping("/cloud")
 @RestController
 public class CloudApi {
-    Process process;
-    PrintWriter writer;
+    public final DirectoryService directoryService;
     @Autowired
-    public CloudApi() throws IOException {
+    public CloudApi(DirectoryService directoryService)
+    {
+        this.directoryService = directoryService;
+    }
+    @RequestMapping("getdirectory")
+    public Msg<Object> getDirector(Integer userId)
+    {
+        String path = directoryService.getDirectory(userId);
+        System.out.println(path);
+        if(path!=null)
+        {
+            return ResultUtil.success(path);
+        }
+        else {
+            return ResultUtil.error(ResultEnum.Cloud_GET_ERROR);
+        }
 
     }
+    @RequestMapping("savedirectory")
+    public Msg<Object> saveDirector(String content,Integer user_id)
+    {
+        if(directoryService.saveDirectory(content,user_id))
+        {
+            return ResultUtil.success();
+        }else{
+            return  ResultUtil.error(ResultEnum.Cloud_SAVE_ERROR);
+        }
 
+
+    }
+    //
+
+    /*
+    * user
+    * {
+    *   a
+    *   {
+    *       b
+    *       {
+    *           d{},e{},f{}
+    *       },
+    *       c
+    *       {
+    *           name
+    *           url
+    *       }
+    *
+    *   }
+    *
+    *
+    * }
+    *
+    * */
+
+    @RequestMapping("select")
+    public Msg<Object> getAllDirectory()
+    {
+
+        return ResultUtil.success();
+    }
     @RequestMapping("download")
     public String getDownload(HttpServletRequest request, HttpServletResponse response)
     {

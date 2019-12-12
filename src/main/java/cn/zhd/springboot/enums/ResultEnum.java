@@ -13,6 +13,10 @@ public enum ResultEnum {
 
     PASS_ERROR(1,"password error"),
 
+    Cloud_GET_ERROR(100,"Cloud get error"),
+
+    Cloud_SAVE_ERROR(101,"Cloud save error"),
+
     SUCCESS(0,"success"),
 
     ;
