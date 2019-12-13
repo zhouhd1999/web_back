@@ -2,6 +2,7 @@ package cn.zhd.springboot.api;
 
 
 import cn.zhd.springboot.entity.Article;
+import cn.zhd.springboot.entity.Directory;
 import cn.zhd.springboot.enums.ResultEnum;
 import cn.zhd.springboot.service.ArticleService;
 
@@ -9,6 +10,7 @@ import cn.zhd.springboot.service.DirectoryService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,54 +47,25 @@ public class CloudApi {
 
     }
     @RequestMapping("savedirectory")
-    public Msg<Object> saveDirector(String content,Integer user_id)
+    public Msg<Object> saveDirector(String jsonpObject, Integer directoryId)
     {
-        if(directoryService.saveDirectory(content,user_id))
+        Directory directory = new Directory();
+        directory.setDirectoryId(directoryId);
+        directory.setDirectoryContent(jsonpObject);
+        if(directoryService.saveDirectory(directory))
         {
             return ResultUtil.success();
         }else{
             return  ResultUtil.error(ResultEnum.Cloud_SAVE_ERROR);
         }
-
-
-    }
-    //
-
-    /*
-    * user
-    * {
-    *   a
-    *   {
-    *       b
-    *       {
-    *           d{},e{},f{}
-    *       },
-    *       c
-    *       {
-    *           name
-    *           url
-    *       }
-    *
-    *   }
-    *
-    *
-    * }
-    *
-    * */
-
-    @RequestMapping("select")
-    public Msg<Object> getAllDirectory()
-    {
-
-        return ResultUtil.success();
     }
     @RequestMapping("download")
-    public String getDownload(HttpServletRequest request, HttpServletResponse response)
+    public String getDownload(HttpServletRequest request, HttpServletResponse response,String name)
     {
-        String fileName = "abc.rar";// 文件名
+        String fileName = name;// 文件名
         if (fileName != null) {
             //设置文件路径
-            File file = new File("E:/fileUpload/abc.rar");
+            File file = new File("E:/fileUpload/"+name);
             if (file.exists()) {
                 response.setContentType("application/force-download");// 设置强制下载不打开
                 response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
@@ -141,7 +114,6 @@ public class CloudApi {
             System.out.print("文件为空"+"\n");
             return;
         }
-
         // 获取文件名
         String fileName = file.getOriginalFilename();
         System.out.print("上传的文件名为: "+fileName+"\n");
@@ -183,9 +155,6 @@ public class CloudApi {
         return;
     }
 
-
-//
-//    }
     @RequestMapping("start")
     public void getstart(){
         try {

@@ -1,5 +1,6 @@
 package cn.zhd.springboot.service.Impl;
 
+import cn.zhd.springboot.entity.Directory;
 import cn.zhd.springboot.mapper.DirectoryMapper;
 import cn.zhd.springboot.service.DirectoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class DirectoryServiceImpl implements DirectoryService {
     }
 
     @Override
-    public boolean saveDirectory(String content, Integer directoryId) {
-        return  directoryMapper.saveDirectory(content,directoryId);
+    public boolean saveDirectory(Directory directory) {
+        return  directoryMapper.saveDirectory(directory);
     }
 }
