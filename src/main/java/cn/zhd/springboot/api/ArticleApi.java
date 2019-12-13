@@ -25,11 +25,18 @@ public class ArticleApi {
     {
         this.articleService = articleService;
     }
-    
+
+
     @RequestMapping("/get_article")
     public Msg<Object> getArticle()
     {
         List<Article> articles = articleService.getArticleByAll();
+        return ResultUtil.success(articles);
+    }
+
+    @RequestMapping("/get_articleByUserId")
+    public Msg<Object>getArticleByUserId(Integer userId){
+        List<Article> articles = articleService.getArticleByUserId(userId);
         return ResultUtil.success(articles);
     }
 
