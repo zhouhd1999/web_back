@@ -12,10 +12,9 @@ import cn.zhd.springboot.util.ResultUtil;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +24,7 @@ import java.util.Date;
 
 @RequestMapping("/cloud")
 @RestController
+//@CrossOrigin
 public class CloudApi {
     public final DirectoryService directoryService;
     @Autowired
@@ -105,17 +105,25 @@ public class CloudApi {
         return "下载失败";
     }
 
-    @RequestMapping("uploadFile")
-    public void getUpload(@RequestParam("fileName") MultipartFile file)
+    @RequestMapping("aaa")
+    public String roomAdd(HttpServletRequest request)
     {
+        MultipartHttpServletRequest  multipart  = (MultipartHttpServletRequest) request;
+        return "adasdf";
+    }
+    @PostMapping("uploadFile")
+   public void getUpload(@RequestParam("fileName") MultipartFile[] file)
+  //  public void getUpload(MultipartFile file)
+    {
+
         System.out.print("上传文件==="+"\n");
         //判断文件是否为空
-        if (file.isEmpty()) {
+        if (file[0].isEmpty()) {
             System.out.print("文件为空"+"\n");
             return;
         }
         // 获取文件名
-        String fileName = file.getOriginalFilename();
+        String fileName = file[0].getOriginalFilename();
         System.out.print("上传的文件名为: "+fileName+"\n");
 
         fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + fileName;
@@ -144,7 +152,7 @@ public class CloudApi {
 
         try {
             //上传文件
-            file.transferTo(dest); //保存文件
+            file[0].transferTo(dest); //保存文件
             System.out.print("保存文件路径"+path+"\n");
 
         } catch (IOException e) {
