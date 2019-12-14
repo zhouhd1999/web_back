@@ -17,6 +17,14 @@ public enum ResultEnum {
 
     Cloud_SAVE_ERROR(101,"Cloud save error"),
 
+    ATTITUDE_INSERT_ERROR(201,"attitude insert error"),
+
+    ATTITUDE_UPDATE_ERROR(202,"attitude update error"),
+//
+    ATTITUDE_DELETE_ERROR(203,"attitude delete error"),
+
+    ATTITUDE_DATABASE_ERROR(203,"DATABASE  error"),
+
     SUCCESS(0,"success"),
 
     ;
