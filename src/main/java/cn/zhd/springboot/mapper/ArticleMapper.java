@@ -3,18 +3,19 @@ package cn.zhd.springboot.mapper;
 import cn.zhd.springboot.entity.Article;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
-@Mapper
-@Repository
-public interface ArticleMapper {
-    //获得全部的文章
-    @Select("SELECT * FROM article ORDER BY article_date_time DESC")
-    List<Article> getArticleByAll();
+    @Mapper
+    @Repository
+    public interface ArticleMapper {
+        //获得全部的文章
+        @Select("SELECT * FROM article ORDER BY article_date_time DESC")
+        List<Article> getArticleByAll();
 
-    @Select("SELECT * FROM article where user_id = #{userId}")
+    //按id搜索文章
+    @Select("SELECT * FROM article where user_id = #{userId} ORDER BY article_date_time")
     List<Article> getArticleByUserId(Integer userId);
+
     //获得标题内有指定字符串的文章（搜索功能）
     @Select("SELECT * FROM article WHERE article_name LIKE '%#{articleName}%'")
     List<Article> getArticleByName(String articleName);
