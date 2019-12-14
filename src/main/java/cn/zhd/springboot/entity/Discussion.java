@@ -13,4 +13,6 @@ public class Discussion {
     String discussionContent;
     Integer discussionId;
     Integer articleId;
+    Integer replayId;
+    Integer replayUserId;
 }
