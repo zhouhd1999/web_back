@@ -24,15 +24,17 @@ import java.util.Date;
 
 @RequestMapping("/cloud")
 @RestController
-//@CrossOrigin
 public class CloudApi {
+
     public final DirectoryService directoryService;
+
     @Autowired
     public CloudApi(DirectoryService directoryService)
     {
         this.directoryService = directoryService;
     }
-    @RequestMapping("getdirectory")
+
+    @RequestMapping("/get_directory")
     public Msg<Object> getDirector(Integer userId)
     {
         String path = directoryService.getDirectory(userId);
@@ -46,7 +48,8 @@ public class CloudApi {
         }
 
     }
-    @RequestMapping("savedirectory")
+
+    @RequestMapping("/save_directory")
     public Msg<Object> saveDirector(String jsonpObject, Integer directoryId)
     {
         Directory directory = new Directory();
@@ -59,6 +62,17 @@ public class CloudApi {
             return  ResultUtil.error(ResultEnum.Cloud_SAVE_ERROR);
         }
     }
+
+    @RequestMapping("aaa")
+    public void roomAdd(HttpServletRequest request)
+    {
+        System.out.println(123);
+        MultipartHttpServletRequest multipart  = (MultipartHttpServletRequest) request;
+        return;
+    }
+
+
+
     @RequestMapping("download")
     public String getDownload(HttpServletRequest request, HttpServletResponse response,String name)
     {
@@ -105,25 +119,22 @@ public class CloudApi {
         return "下载失败";
     }
 
-    @RequestMapping("aaa")
-    public String roomAdd(HttpServletRequest request)
-    {
-        MultipartHttpServletRequest  multipart  = (MultipartHttpServletRequest) request;
-        return "adasdf";
-    }
     @PostMapping("uploadFile")
-   public void getUpload(@RequestParam("fileName") MultipartFile[] file)
-  //  public void getUpload(MultipartFile file)
+    @ResponseBody
+    public void getUpload(MultipartFile file)
     {
 
         System.out.print("上传文件==="+"\n");
         //判断文件是否为空
-        if (file[0].isEmpty()) {
+        if (file.isEmpty()) {
             System.out.print("文件为空"+"\n");
             return;
         }
         // 获取文件名
-        String fileName = file[0].getOriginalFilename();
+        String fileName = file.getOriginalFilename();
+        String fileName0 = file.getOriginalFilename();
+        System.out.println(fileName);
+        System.out.println(fileName0);
         System.out.print("上传的文件名为: "+fileName+"\n");
 
         fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + fileName;
@@ -152,7 +163,7 @@ public class CloudApi {
 
         try {
             //上传文件
-            file[0].transferTo(dest); //保存文件
+            file.transferTo(dest); //保存文件
             System.out.print("保存文件路径"+path+"\n");
 
         } catch (IOException e) {
