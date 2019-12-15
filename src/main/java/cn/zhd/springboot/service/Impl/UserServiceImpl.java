@@ -56,4 +56,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) { userMapper.updateUser(user); }
+
+    @Override
+    public boolean updateUserPermission(User user) {
+        return userMapper.updateUserPermission(user);
+    }
 }

@@ -6,6 +6,8 @@ import cn.zhd.springboot.service.UserArticleAttitudeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserArticleAttitudeServiceImpI implements UserArticleAttitudeService {
     private final UserArticleAttitudeMapper userArticleAttitudeMapper;
@@ -31,7 +33,14 @@ public class UserArticleAttitudeServiceImpI implements UserArticleAttitudeServic
     }
 
     @Override
-    public boolean upadateUserAttitude(Integer userId, Integer articleId, Integer attitude) {
+    public boolean updateUserAttitude(Integer userId, Integer articleId, Integer attitude) {
         return userArticleAttitudeMapper.updateUserAttitude(userId,articleId,attitude);
     }
+
+    @Override
+    public List<Integer> getUserLikeArticleId(Integer userId, Integer userAttitude) {
+        return userArticleAttitudeMapper.getUserLikeArticleId(userId,userAttitude);
+    }
+
+
 }

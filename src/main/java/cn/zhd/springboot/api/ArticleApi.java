@@ -3,6 +3,7 @@ package cn.zhd.springboot.api;
 import cn.zhd.springboot.entity.Article;
 import cn.zhd.springboot.enums.ResultEnum;
 import cn.zhd.springboot.service.ArticleService;
+import cn.zhd.springboot.service.UserArticleAttitudeService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
 import org.apache.catalina.util.RequestUtil;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,11 +21,12 @@ import java.util.List;
 public class ArticleApi {
 
     private  final ArticleService articleService;
-
+    private final UserArticleAttitudeService userArticleAttitudeService;
     @Autowired
-    public ArticleApi(ArticleService articleService)
+    public ArticleApi(ArticleService articleService, UserArticleAttitudeService userArticleAttitudeService)
     {
         this.articleService = articleService;
+        this.userArticleAttitudeService = userArticleAttitudeService;
     }
 
 
@@ -89,4 +92,21 @@ public class ArticleApi {
     public Msg<Object> getArticleByArticleId(Integer articleId){
         return ResultUtil.success(articleService.getArticleByArticleId(articleId));
     }
+
+
+    @RequestMapping("/get_like_article")
+    public Msg<Object> getLikeArticle(Integer userId)
+    {
+        List<Integer>articleId = userArticleAttitudeService.getUserLikeArticleId(userId,1);
+        List<Article> article = new ArrayList<>();
+        Article t_article;
+        for(int i=0; i<articleId.size(); i++)
+        {
+            t_article = articleService.getArticleByArticleId(articleId.get(i));
+            t_article.setArticleContent(" ");
+            article.add(t_article);
+        }
+        return ResultUtil.success(article);
+    }
+
 }

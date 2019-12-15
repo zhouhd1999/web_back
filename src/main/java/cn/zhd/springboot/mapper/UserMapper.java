@@ -25,4 +25,7 @@ public interface UserMapper {
 
     @Update("UPDATE user SET user_nickname=#{userNickname} WHERE user_account=#{userAccount}")
     void updateUser(User user);
+
+    @Update("UPDATE user SET user_permission = #{userPermission} WHERE user_account = #{userAccount}")
+    boolean updateUserPermission(User user);
 }

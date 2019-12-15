@@ -20,13 +20,21 @@ public enum ResultEnum {
     CLOUD_UPLOAD_ERROR(102,"Cloud update error"),
 
 
+
     ATTITUDE_INSERT_ERROR(201,"attitude insert error"),
 
     ATTITUDE_UPDATE_ERROR(202,"attitude update error"),
 //
     ATTITUDE_DELETE_ERROR(203,"attitude delete error"),
 
-    ATTITUDE_DATABASE_ERROR(203,"DATABASE  error"),
+    ATTITUDE_DATABASE_ERROR(203,"database  error"),
+
+    USER_UPDATE_PERMISSION_ERROR(301,"user update permission error"),
+
+
+
+    ARTICLE_UPDATE_STATIC(401,"article update static error"),
+
 
     SUCCESS(0,"success"),
 

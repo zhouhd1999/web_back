@@ -14,4 +14,5 @@ public interface UserService {
     boolean insertUser(User user);
 
     void updateUser(User user);
+    boolean updateUserPermission(User user);
 }

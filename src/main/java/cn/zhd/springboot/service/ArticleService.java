@@ -38,4 +38,6 @@ public interface ArticleService {
     boolean likeArticle(Integer articleId);
 
     Article getArticleByArticleId(Integer articleId);
+
+    boolean updateArticleState(Integer articleState, Integer articleId);
 }

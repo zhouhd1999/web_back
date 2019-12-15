@@ -69,4 +69,17 @@ public class UserApi {
         userService.updateUser(user);
         return ResultUtil.success();
     }
+
+    @RequestMapping("/delete_user")
+    public Msg<Object> deleteUser(User user)
+    {
+        if( userService.updateUserPermission(user))
+        {
+            return ResultUtil.success();
+        }
+        else
+        {
+            return ResultUtil.error(ResultEnum.USER_UPDATE_PERMISSION_ERROR);
+        }
+    }
 }

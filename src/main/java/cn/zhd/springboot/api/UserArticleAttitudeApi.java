@@ -57,7 +57,7 @@ public class UserArticleAttitudeApi {
                 }
                 else//否则就进行更新。
                 {
-                    if(!userArticleAttitudeService.upadateUserAttitude(userId,articleId,futureAttitude))
+                    if(!userArticleAttitudeService.updateUserAttitude(userId,articleId,futureAttitude))
                     {
                         return ResultUtil.error(ResultEnum.ATTITUDE_UPDATE_ERROR);
                     }

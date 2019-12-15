@@ -24,8 +24,8 @@ import java.io.*;
 @RestController
 public class CloudApi {
 
-    public final DirectoryService directoryService;
-    public final CloudService cloudService;
+    private final DirectoryService directoryService;
+    private final CloudService cloudService;
     @Autowired
     public CloudApi(DirectoryService directoryService, CloudService cloudService)
     {
