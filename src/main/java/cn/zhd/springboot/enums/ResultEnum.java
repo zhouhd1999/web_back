@@ -13,9 +13,12 @@ public enum ResultEnum {
 
     PASS_ERROR(1,"password error"),
 
-    Cloud_GET_ERROR(100,"Cloud get error"),
+    CLOUD_GET_ERROR(100,"Cloud get error"),
 
-    Cloud_SAVE_ERROR(101,"Cloud save error"),
+    CLOUD_SAVE_ERROR(101,"Cloud save error"),
+
+    CLOUD_UPLOAD_ERROR(102,"Cloud update error"),
+
 
     ATTITUDE_INSERT_ERROR(201,"attitude insert error"),
 
