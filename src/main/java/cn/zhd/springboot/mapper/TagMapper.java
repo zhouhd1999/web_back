@@ -1,8 +1,8 @@
 package cn.zhd.springboot.mapper;
 
 import cn.zhd.springboot.entity.Tag;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +13,8 @@ public interface TagMapper {
 
     @Select("SELECT * FROM tag")
     List<Tag> getAllTag();
-
+    @Insert("INSERT INTO tag(tag_name) VALUES(#{tagName})")
+    Boolean insertTag(String tagName);
+    @Update("UPDATE tag SET tag_name = #{tagName} WHERE tag_id = #{tagId}")
+    Boolean deleteTag(String tagName,Integer tagId);
 }

@@ -23,4 +23,14 @@ public class TagServiceImpl implements TagService {
     public List<Tag> getAllTag() {
         return tagMapper.getAllTag();
     }
+
+    @Override
+    public boolean insertTag(String tagName) {
+        return tagMapper.insertTag(tagName);
+    }
+
+    @Override
+    public boolean updateTag(String tagName, Integer tagId) {
+        return tagMapper.deleteTag(tagName,tagId);
+    }
 }
