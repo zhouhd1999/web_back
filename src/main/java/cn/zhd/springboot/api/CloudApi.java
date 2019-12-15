@@ -36,11 +36,11 @@ public class CloudApi {
     @RequestMapping("/get_directory")
     public Msg<Object> getDirector(Integer userId)
     {
-        String path = directoryService.getDirectory(userId);
-        System.out.println(path);
-        if(path!=null)
+        Directory directory = directoryService.getDirectory(userId);
+        System.out.println(directory);
+        if(directory!=null)
         {
-            return ResultUtil.success(path);
+            return ResultUtil.success(directory);
         }
         else {
             return ResultUtil.error(ResultEnum.CLOUD_GET_ERROR);
@@ -49,10 +49,11 @@ public class CloudApi {
     }
 
     @RequestMapping("/save_directory")
-    public Msg<Object> saveDirector(String dirContent, Integer directoryId)
+    public Msg<Object> saveDirector(String dirContent, Integer directoryId,Integer countId)
     {
         Directory directory = new Directory();
         directory.setDirectoryId(directoryId);
+        directory.setCountId(countId);
         directory.setDirectoryContent(dirContent);
         if(directoryService.saveDirectory(directory))
         {

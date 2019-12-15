@@ -15,7 +15,7 @@ public class DirectoryServiceImpl implements DirectoryService {
         this.directoryMapper = directoryMapper;
     }
     @Override
-    public String getDirectory(Integer directoryId) {
+    public Directory getDirectory(Integer directoryId) {
         return directoryMapper.getDirectory(directoryId);
     }
 

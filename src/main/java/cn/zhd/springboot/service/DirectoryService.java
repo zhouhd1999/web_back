@@ -4,6 +4,6 @@ import cn.zhd.springboot.entity.Directory;
 
 public interface DirectoryService {
 
-    String getDirectory(Integer directoryId);
+    Directory getDirectory(Integer directoryId);
     boolean saveDirectory(Directory directory);
 }

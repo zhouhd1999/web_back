@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface DirectoryMapper {
-    @Select("SELECT directory_content FROM kb_directory WHERE directory_id = #{directoryId}")
-    String getDirectory(Integer directoryId);
-    @Update("UPDATE kb_directory SET directory_content = #{directoryContent} WHERE directory_id = #{directoryId}")
+    @Select("SELECT * FROM kb_directory WHERE directory_id = #{directoryId}")
+    Directory getDirectory(Integer directoryId);
+
+    @Update("UPDATE kb_directory SET directory_content = #{directoryContent},count_id=#{countId} WHERE directory_id = #{directoryId}")
     boolean saveDirectory(Directory directory);
 }
