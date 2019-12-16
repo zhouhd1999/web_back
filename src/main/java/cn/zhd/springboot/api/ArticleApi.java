@@ -52,7 +52,8 @@ public class ArticleApi {
     public Msg<Object>getArticleByState(Integer state)
     {
         List<Article> articles = articleService.getArticleByState(state);
-        return ResultUtil.success(articles);
+        List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
+        return ResultUtil.success(allArticle);
     }
 
     @RequestMapping("/insert_article")
