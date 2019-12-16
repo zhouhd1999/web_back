@@ -9,6 +9,7 @@ import cn.zhd.springboot.service.InformationService;
 import cn.zhd.springboot.service.UserArticleAttitudeService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
+import cn.zhd.springboot.util.SetClassUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,25 +39,15 @@ public class ArticleApi {
     public Msg<Object> getArticle()
     {
         List<Article> articles = articleService.getArticleByAll();
-        List<AllArticle> allArticle = new ArrayList<>();
-
-        for(int i=0; i<articles.size(); i++)
-        {//这里等会儿研究下，为啥tallArticle放在外面就有问题。
-            AllArticle tallArticle = new AllArticle();
-            tallArticle.setArticle(articles.get(i));
-            Information information= informationService.getInformationByUserId(articles.get(i).getUserId());
-            tallArticle.setInformation(information);
-            allArticle.add(tallArticle);
-//            System.out.println("all="+allArticle.get(i).getArticle().getArticleId());
-//            System.out.println("tall="+tallArticle.getArticle().getArticleId());
-        }
+        List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
         return ResultUtil.success(allArticle);
     }
 
     @RequestMapping("/get_articleByUserId")
     public Msg<Object>getArticleByUserId(Integer userId){
         List<Article> articles = articleService.getArticleByUserId(userId);
-        return ResultUtil.success(articles);
+        List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
+        return ResultUtil.success(allArticle);
     }
 
     @RequestMapping("/insert_article")
@@ -122,7 +113,8 @@ public class ArticleApi {
             t_article.setArticleContent(" ");
             article.add(t_article);
         }
-        return ResultUtil.success(article);
+        List<AllArticle> allArticles = SetClassUtil.getAllArticle(article);
+        return ResultUtil.success(allArticles);
     }
 
     @RequestMapping("/get_article_by_tag_id")
