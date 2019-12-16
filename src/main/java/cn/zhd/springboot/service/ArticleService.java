@@ -27,6 +27,8 @@ public interface ArticleService {
     //获得按照赞排序的文章
     List<Article> getArticleByLike();
 
+    public List<Article> getArticleByState(Integer state);
+
      //增加文章
     boolean insertArticle(Article article);
 
