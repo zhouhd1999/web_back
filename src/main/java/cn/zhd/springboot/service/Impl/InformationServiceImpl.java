@@ -3,8 +3,10 @@ package cn.zhd.springboot.service.Impl;
 import cn.zhd.springboot.entity.Information;
 import cn.zhd.springboot.mapper.InformationMapper;
 import cn.zhd.springboot.service.InformationService;
+import cn.zhd.springboot.util.FileSaveUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class InformationServiceImpl implements InformationService {
@@ -19,6 +21,15 @@ public class InformationServiceImpl implements InformationService {
     @Override
     public Information getInformationByUserId(Integer userId) {
         return informationMapper.getInformationByUserId(userId);
+    }
+
+    @Override
+    public boolean updateHead(Integer userId, MultipartFile file) {
+        String url = "E:/headurl/";
+        FileSaveUtil.filesave(file,url);
+        String url1 = "'"+ url + file.getOriginalFilename() + "'";
+        System.out.println(url1);
+        return informationMapper.updateHead(userId,url1);
     }
 
     @Override

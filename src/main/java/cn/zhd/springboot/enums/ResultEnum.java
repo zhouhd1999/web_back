@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ResultEnum {
 
+    ALL_ERROR(-10,"emmmm"),
+
     SYSTEM_ERROR(-1,"system error"),
 
     ACCOUNT_EXIST(2,"account exist"),

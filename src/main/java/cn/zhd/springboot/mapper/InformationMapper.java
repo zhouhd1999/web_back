@@ -18,6 +18,9 @@ public interface InformationMapper {
     @Update("UPDATE information SET info_age=#{infoAge},info_phone_number=#{infoPhoneNumber},info_profession=#{infoProfession},info_introduction=#{infoIntroduction},info_head_url=#{infoHeadUrl} WHERE user_id=#{userId}")
     void updateInformation(Information information);
 
+
+    @Update("UPDATE information SET info_head_url = #{url} WHERE user_id = #{userId};")
+    boolean updateHead(Integer userId, String url);
     @Insert("INSERT INTO information (user_id) VALUES(#{userId}) ")
     void insertInformationByUserId(Integer userId);
 }
