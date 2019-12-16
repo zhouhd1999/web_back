@@ -6,7 +6,6 @@ import cn.zhd.springboot.service.ArticleService;
 import cn.zhd.springboot.service.UserArticleAttitudeService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
-import org.apache.catalina.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -107,6 +106,11 @@ public class ArticleApi {
             article.add(t_article);
         }
         return ResultUtil.success(article);
+    }
+
+    @RequestMapping("/get_article_by_tag_id")
+        public Msg<Object> getArticleByTagId(Integer tagId){
+        return ResultUtil.success(articleService.getArticleByTag(tagId));
     }
 
 }
