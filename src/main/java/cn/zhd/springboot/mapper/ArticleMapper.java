@@ -14,6 +14,7 @@ import java.util.List;
 
     //按id搜索文章
     @Select("SELECT * FROM article where user_id = #{userId} ORDER BY article_date_time")
+  //  @Select("SELECT * FROM article, `user`,tag WHERE article_id = 2")
     List<Article> getArticleByUserId(Integer userId);
 
     //获得标题内有指定字符串的文章（搜索功能）

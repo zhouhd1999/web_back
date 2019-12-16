@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Information {
-
     Integer userId;
 
     Integer infoAge;
@@ -18,4 +17,6 @@ public class Information {
     String infoProfession;
 
     String infoIntroduction;
+
+    String infoHeadUrl;
 }

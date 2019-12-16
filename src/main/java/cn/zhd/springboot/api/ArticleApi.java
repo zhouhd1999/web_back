@@ -1,8 +1,11 @@
 package cn.zhd.springboot.api;
 
+import cn.zhd.springboot.entity.AllArticle;
 import cn.zhd.springboot.entity.Article;
+import cn.zhd.springboot.entity.Information;
 import cn.zhd.springboot.enums.ResultEnum;
 import cn.zhd.springboot.service.ArticleService;
+import cn.zhd.springboot.service.InformationService;
 import cn.zhd.springboot.service.UserArticleAttitudeService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
@@ -21,11 +24,13 @@ public class ArticleApi {
 
     private  final ArticleService articleService;
     private final UserArticleAttitudeService userArticleAttitudeService;
+    private final InformationService informationService;
     @Autowired
-    public ArticleApi(ArticleService articleService, UserArticleAttitudeService userArticleAttitudeService)
+    public ArticleApi(ArticleService articleService, UserArticleAttitudeService userArticleAttitudeService, InformationService informationService)
     {
         this.articleService = articleService;
         this.userArticleAttitudeService = userArticleAttitudeService;
+        this.informationService = informationService;
     }
 
 
@@ -33,7 +38,19 @@ public class ArticleApi {
     public Msg<Object> getArticle()
     {
         List<Article> articles = articleService.getArticleByAll();
-        return ResultUtil.success(articles);
+        List<AllArticle> allArticle = new ArrayList<>();
+
+        for(int i=0; i<articles.size(); i++)
+        {//这里等会儿研究下，为啥tallArticle放在外面就有问题。
+            AllArticle tallArticle = new AllArticle();
+            tallArticle.setArticle(articles.get(i));
+            Information information= informationService.getInformationByUserId(articles.get(i).getUserId());
+            tallArticle.setInformation(information);
+            allArticle.add(tallArticle);
+//            System.out.println("all="+allArticle.get(i).getArticle().getArticleId());
+//            System.out.println("tall="+tallArticle.getArticle().getArticleId());
+        }
+        return ResultUtil.success(allArticle);
     }
 
     @RequestMapping("/get_articleByUserId")
