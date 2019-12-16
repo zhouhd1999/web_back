@@ -1,11 +1,7 @@
 package cn.zhd.springboot.util;
 
-import cn.zhd.springboot.entity.AllArticle;
-import cn.zhd.springboot.entity.Article;
-import cn.zhd.springboot.entity.Information;
-import cn.zhd.springboot.service.ArticleService;
-import cn.zhd.springboot.service.InformationService;
-import cn.zhd.springboot.service.UserArticleAttitudeService;
+import cn.zhd.springboot.entity.*;
+import cn.zhd.springboot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +12,10 @@ import java.util.List;
 @Component
 public class SetClassUtil {
     @Autowired
-    private InformationService informationService;
+    //private InformationService informationService;
+    private UserService userService;
+    @Autowired
+    private TagService tagService;
 
     public static SetClassUtil setClassUtil;
 
@@ -32,8 +31,10 @@ public class SetClassUtil {
         {
             AllArticle tallArticle = new AllArticle();
             tallArticle.setArticle(articles.get(i));
-            Information information= setClassUtil.informationService.getInformationByUserId(articles.get(i).getUserId());
-            tallArticle.setInformation(information);
+            String nickname= setClassUtil.userService.getNicknameByUserId(articles.get(i).getUserId());
+            String tagName = setClassUtil.tagService.getTagNameByTagId(articles.get(i).getTagId());
+            tallArticle.setNickname(nickname);
+            tallArticle.setTagName(tagName);
             allArticle.add(tallArticle);
         }
         return allArticle;

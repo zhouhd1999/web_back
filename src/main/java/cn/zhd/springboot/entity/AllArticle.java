@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AllArticle {
     Article article;
-    Information information;
+    String nickname;
+    String tagName;
 }

@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String getNicknameByUserId(Integer userId) {
+        return userMapper.getNicknameByUserId(userId);
+    }
+
+    @Override
     public User loginByUserAccount(String userAccount,String password){
         User user = userMapper.getUserByUserAccount(userAccount);
         if (password.equals(user.getUserPassword())){

@@ -7,6 +7,9 @@ import java.util.List;
 public interface UserService {
     List<User> getAll();
 
+    String getNicknameByUserId(Integer userId);
+
+
     User loginByUserAccount(String userAccount,String password);
 
     User getUserByUserAccount(String userAccount);

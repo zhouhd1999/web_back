@@ -1,6 +1,7 @@
 package cn.zhd.springboot.mapper;
 
 import cn.zhd.springboot.entity.User;
+import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -17,6 +18,8 @@ public interface UserMapper {
     @Select("SELECT * FROM user")
     List<User> getAll();
 
+    @Select("SELECT user_nickname FROM `user` WHERE user_id = #{userId}")
+    String getNicknameByUserId(Integer userId);
     @Select("SELECT * FROM user WHERE user_account=#{userAccount}")
     User getUserByUserAccount(String userAccount);
 

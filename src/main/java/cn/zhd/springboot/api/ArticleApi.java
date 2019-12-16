@@ -50,6 +50,7 @@ public class ArticleApi {
         return ResultUtil.success(allArticle);
     }
 
+
     @RequestMapping("/insert_article")
     public Msg<Object> insertArticle(Article article){
         Date date = new Date();

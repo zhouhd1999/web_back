@@ -13,6 +13,8 @@ public interface TagMapper {
 
     @Select("SELECT * FROM tag")
     List<Tag> getAllTag();
+    @Select("SELECT tag_name FROM tag WHERE tag_id = #{tagId}")
+    String getTagNameByTagId(Integer tagId);
     @Insert("INSERT INTO tag(tag_name) VALUES(#{tagName})")
     Boolean insertTag(String tagName);
     @Update("UPDATE tag SET tag_name = #{tagName} WHERE tag_id = #{tagId}")
