@@ -26,7 +26,7 @@ public interface UserMapper {
     @Insert("INSERT INTO user(user_account,user_password,user_nickname,user_permission)VALUES(#{userAccount},#{userPassword},#{userNickname},#{userPermission})")
     void insertUser(User user);
 
-    @Update("UPDATE user SET user_nickname=#{userNickname} WHERE user_account=#{userAccount}")
+    @Update("UPDATE user SET user_nickname=#{userNickname},user_permission=#{userPermission} WHERE user_account=#{userAccount}")
     void updateUser(User user);
 
     @Update("UPDATE user SET user_permission = #{userPermission} WHERE user_account = #{userAccount}")

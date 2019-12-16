@@ -27,8 +27,8 @@ public class UserApi {
     }
 
     @RequestMapping("/get_all")
-    public List<User> getAll(){
-        return userService.getAll();
+    public Msg<Object> getAll(){
+        return ResultUtil.success(userService.getAll());
     }
 
 
