@@ -37,6 +37,11 @@ import java.util.List;
     @Select("SELECT * FROM article ORDER BY article_like desc LIMIT 5")
     List<Article> getArticleByLike();
 
+    @Select("SELECT * FROM article WHERE article_state = #{state}")
+    List<Article> getArticleByState(Integer state);
+
+
+
 
     @Select("SELECT * FROM article WHERE article_id = #{articleId}")
     Article getArticleByArticleId(Integer articleId);

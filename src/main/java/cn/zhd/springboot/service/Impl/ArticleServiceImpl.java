@@ -44,6 +44,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticleByState(Integer state){return articleMapper.getArticleByState(state);}
+
+    @Override
     public List<Article> getArticleByClick() {
         return articleMapper.getArticleByClick();
     }

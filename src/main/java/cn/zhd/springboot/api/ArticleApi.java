@@ -25,13 +25,12 @@ public class ArticleApi {
 
     private final ArticleService articleService;
     private final UserArticleAttitudeService userArticleAttitudeService;
-    private final InformationService informationService;
+
     @Autowired
     public ArticleApi(ArticleService articleService, UserArticleAttitudeService userArticleAttitudeService, InformationService informationService)
     {
         this.articleService = articleService;
         this.userArticleAttitudeService = userArticleAttitudeService;
-        this.informationService = informationService;
     }
 
     @RequestMapping("/get_article")
@@ -49,6 +48,12 @@ public class ArticleApi {
         return ResultUtil.success(allArticle);
     }
 
+    @RequestMapping("/get_article_by_state")
+    public Msg<Object>getArticleByState(Integer state)
+    {
+        List<Article> articles = articleService.getArticleByState(state);
+        return ResultUtil.success(articles);
+    }
 
     @RequestMapping("/insert_article")
     public Msg<Object> insertArticle(Article article){
