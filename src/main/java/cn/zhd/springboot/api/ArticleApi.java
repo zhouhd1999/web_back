@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 public class ArticleApi {
 
-    private  final ArticleService articleService;
+    private final ArticleService articleService;
     private final UserArticleAttitudeService userArticleAttitudeService;
     private final InformationService informationService;
     @Autowired
@@ -33,7 +33,6 @@ public class ArticleApi {
         this.userArticleAttitudeService = userArticleAttitudeService;
         this.informationService = informationService;
     }
-
 
     @RequestMapping("/get_article")
     public Msg<Object> getArticle()
@@ -120,7 +119,9 @@ public class ArticleApi {
 
     @RequestMapping("/get_article_by_tag_id")
         public Msg<Object> getArticleByTagId(Integer tagId){
-        return ResultUtil.success(articleService.getArticleByTag(tagId));
+        List<Article> articles = articleService.getArticleByTag(tagId);
+        List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
+        return ResultUtil.success(allArticle);
     }
 
 }
