@@ -8,7 +8,7 @@ import java.util.List;
     @Mapper
     @Repository
     public interface ArticleMapper {
-        //获得全部的文章
+    //获得全部的文章
     @Select("SELECT * FROM article ORDER BY article_date_time DESC")
     List<Article> getArticleByAll();
 
