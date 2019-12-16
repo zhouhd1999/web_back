@@ -16,5 +16,7 @@ public interface TagMapper {
     @Insert("INSERT INTO tag(tag_name) VALUES(#{tagName})")
     Boolean insertTag(String tagName);
     @Update("UPDATE tag SET tag_name = #{tagName} WHERE tag_id = #{tagId}")
-    Boolean deleteTag(String tagName,Integer tagId);
+    Boolean updateTag(String tagName,Integer tagId);
+    @Delete("DELETE FROM tag WHERE tag_id = #{tagId}")
+    Boolean deleteTag(Integer tagId);
 }

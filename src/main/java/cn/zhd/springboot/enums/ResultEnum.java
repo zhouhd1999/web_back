@@ -33,11 +33,18 @@ public enum ResultEnum {
 
 
 
-    ARTICLE_UPDATE_STATIC(401,"article update static error"),
+    ARTICLE_UPDATE_STATIC_ERROR(401,"article update static error"),
 
     TAG_INSET_ERROR(501,"tag insert error"),
 
     TAG_UPDATE_ERROR(502,"tag update error"),
+
+    TAG_DELETE_ERROR(503,"tag delete error"),
+
+
+    ARTICLE_UPDATE_ERROR(601,"article delete error"),
+    ARTICLE_INSERT_ERROR(602,"article delete error"),
+    ARTICLE_DELETE_ERROR(603,"article delete error"),
 
 
     SUCCESS(0,"success"),

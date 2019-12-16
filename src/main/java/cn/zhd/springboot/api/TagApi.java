@@ -1,7 +1,9 @@
 package cn.zhd.springboot.api;
 
+import cn.zhd.springboot.entity.Article;
 import cn.zhd.springboot.entity.Tag;
 import cn.zhd.springboot.enums.ResultEnum;
+import cn.zhd.springboot.service.ArticleService;
 import cn.zhd.springboot.service.TagService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
@@ -16,10 +18,11 @@ import java.util.List;
 public class TagApi {
 
     private final TagService tagService;
-
+    private final ArticleService articleService;
     @Autowired
-    public TagApi(TagService tagService) {
+    public TagApi(TagService tagService, ArticleService articleService) {
         this.tagService = tagService;
+        this.articleService = articleService;
     }
 
     //对得到的属性进行判断 type为0的是生活类标签，type为1是技术类标签。
@@ -51,7 +54,19 @@ public class TagApi {
     @RequestMapping("/delete_tag")
     public Msg<Object> deleteTag(Integer tagId)
     {
-        return ResultUtil.success();
+        if(tagService.deleteTag(tagId))
+        {
+            if(articleService.updateArticleStateByTag(0,tagId))
+            {
+                return ResultUtil.success();
+            }
+            else{
+                return ResultUtil.error(ResultEnum.ARTICLE_UPDATE_ERROR);
+            }
+        }
+        else{
+            return ResultUtil.error(ResultEnum.TAG_DELETE_ERROR);
+        }
     }
 
 }

@@ -83,5 +83,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.updateArticleState(articleState,articleId);
     }
 
+    @Override
+    public boolean updateArticleStateByTag(Integer state, Integer tagId) {
+        return articleMapper.updateArticleStateByTag(state,tagId);
+    }
+
 
 }

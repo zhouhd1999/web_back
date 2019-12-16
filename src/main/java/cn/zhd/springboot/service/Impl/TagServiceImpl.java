@@ -31,6 +31,11 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public boolean updateTag(String tagName, Integer tagId) {
-        return tagMapper.deleteTag(tagName,tagId);
+        return tagMapper.updateTag(tagName,tagId);
+    }
+
+    @Override
+    public boolean deleteTag(Integer tagId) {
+        return tagMapper.deleteTag(tagId);
     }
 }

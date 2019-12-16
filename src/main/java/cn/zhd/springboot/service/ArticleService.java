@@ -40,4 +40,7 @@ public interface ArticleService {
     Article getArticleByArticleId(Integer articleId);
 
     boolean updateArticleState(Integer articleState, Integer articleId);
+
+    // 根据标签更新文章
+     boolean updateArticleStateByTag(Integer state,Integer tagId);
 }
