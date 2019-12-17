@@ -66,6 +66,8 @@ import java.util.List;
     @Update("UPDATE article SET article_state = #{state} WHERE tag_id = #{tagId}")
     boolean updateArticleStateByTag(Integer state,Integer tagId);
 
+    @Select("SELECT * FROM `article` ,tag where `article`.tag_id = tag.tag_id and tag_type = #{tagType}")
+    List<Article>  getArticleByTagType(Integer tagType);
 
 
 
@@ -73,6 +75,4 @@ import java.util.List;
 
 
 
-
-
-}
+    }

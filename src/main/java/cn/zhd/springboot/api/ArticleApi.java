@@ -151,4 +151,10 @@ public class ArticleApi {
         return ResultUtil.success(allArticle);
     }
 
+    @RequestMapping("/get_article_by_tag_type")
+    public Msg<Object> getArticleByTagType(Integer tagType){
+        List<Article>articles = articleService.getArticleByTagType(tagType);
+        List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
+        return ResultUtil.success(allArticle);
+    }
 }

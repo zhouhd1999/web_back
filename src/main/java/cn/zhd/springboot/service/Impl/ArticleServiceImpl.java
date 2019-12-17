@@ -91,5 +91,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.updateArticleStateByTag(state,tagId);
     }
 
+    @Override
+    public List<Article>getArticleByTagType(Integer tagType){
+        return articleMapper.getArticleByTagType(tagType);
+    }
 
 }
