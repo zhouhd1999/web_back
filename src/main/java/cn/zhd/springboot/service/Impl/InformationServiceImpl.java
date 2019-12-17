@@ -25,9 +25,9 @@ public class InformationServiceImpl implements InformationService {
 
     @Override
     public boolean updateHead(Integer userId, MultipartFile file) {
-        String url = "D:/Web/second/src/assets/image";
+        String url = "D:/Web/second/src/assets/image/";
         FileSaveUtil.filesave(file,url);
-        String url1 = "'"+ url + file.getOriginalFilename() + "'";
+        String url1 = file.getOriginalFilename();
         System.out.println(url1);
         return informationMapper.updateHead(userId,url1);
     }
