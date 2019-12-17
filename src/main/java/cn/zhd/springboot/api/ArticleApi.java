@@ -86,11 +86,22 @@ public class ArticleApi {
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
         }
     }
+    @RequestMapping("/update_article_state")
+    public Msg<Object> updateArticleState(Integer state, Integer article){
+        if(articleService.updateArticleState(state,article)){
+            return ResultUtil.success();
+        }else {
+            return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+    }
+
 
     @RequestMapping("/get_article_by_like")
     public Msg<Object> getArticleByLike(){
         return ResultUtil.success(articleService.getArticleByLike());
     }
+
+
 
     @RequestMapping("/like_article")
     public Msg<Object> likeArticle(Integer articleId){
