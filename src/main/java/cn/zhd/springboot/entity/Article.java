@@ -20,4 +20,5 @@ public class Article {
     Integer articleClickNum;      //文章点击数
     String articleDescribe;   //文章描述
     String articleName;       //文章名
+    String articlePreviewImg; //文章预览图片
 }

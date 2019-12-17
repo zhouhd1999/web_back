@@ -13,6 +13,7 @@ import cn.zhd.springboot.util.SetClassUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -151,10 +152,24 @@ public class ArticleApi {
         return ResultUtil.success(allArticle);
     }
 
+    @RequestMapping("/insert_article_preview_img")
+    public Msg<Object> insertArticlePreviewImg(MultipartFile file)
+    {
+        if(articleService.insertArticlePreviewImg(file))
+        {
+            return ResultUtil.success();
+        }
+        else{
+            return ResultUtil.error(ResultEnum.ALL_ERROR);
+        }
+    }
+
     @RequestMapping("/get_article_by_tag_type")
     public Msg<Object> getArticleByTagType(Integer tagType){
         List<Article>articles = articleService.getArticleByTagType(tagType);
         List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
         return ResultUtil.success(allArticle);
     }
+
+
 }

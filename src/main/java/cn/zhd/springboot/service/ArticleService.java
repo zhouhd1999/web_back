@@ -3,6 +3,7 @@ package cn.zhd.springboot.service;
 import cn.zhd.springboot.entity.Article;
 import cn.zhd.springboot.entity.Comment;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 //
@@ -46,5 +47,8 @@ public interface ArticleService {
     // 根据标签更新文章
     boolean updateArticleStateByTag(Integer state,Integer tagId);
 
+    boolean insertArticlePreviewImg(MultipartFile file);
+
     List<Article>getArticleByTagType(Integer tagType);
+
 }

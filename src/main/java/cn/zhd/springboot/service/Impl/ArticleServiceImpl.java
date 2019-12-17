@@ -3,8 +3,10 @@ package cn.zhd.springboot.service.Impl;
 import cn.zhd.springboot.entity.Article;
 import cn.zhd.springboot.mapper.ArticleMapper;
 import cn.zhd.springboot.service.ArticleService;
+import cn.zhd.springboot.util.FileSaveUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 @Service
@@ -89,6 +91,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean updateArticleStateByTag(Integer state, Integer tagId) {
         return articleMapper.updateArticleStateByTag(state,tagId);
+    }
+
+    @Override
+    public boolean insertArticlePreviewImg(MultipartFile file){
+        String url = "D:/Web/second/src/assets/article_img/";
+        return FileSaveUtil.filesave(file,url);
     }
 
     @Override
