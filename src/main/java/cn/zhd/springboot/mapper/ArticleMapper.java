@@ -13,7 +13,7 @@ import java.util.List;
     List<Article> getArticleByAll();
 
     //按id搜索文章
-    @Select("SELECT * FROM article where user_id = #{userId} ORDER BY article_date_time")
+    @Select("SELECT * FROM article where user_id = #{userId} ORDER BY article_date_time DESC")
   //  @Select("SELECT * FROM article, `user`,tag WHERE article_id = 2")
     List<Article> getArticleByUserId(Integer userId);
 

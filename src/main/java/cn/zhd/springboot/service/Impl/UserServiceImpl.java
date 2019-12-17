@@ -14,7 +14,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
     private final InformationMapper informationMapper;
-
     @Autowired
     public UserServiceImpl(UserMapper userMapper, InformationMapper informationMapper){
         this.userMapper=userMapper;
@@ -53,6 +52,8 @@ public class UserServiceImpl implements UserService {
     public boolean insertUser(User user){
         if(userMapper.getUserByUserAccount(user.getUserAccount())==null){
             userMapper.insertUser(user);
+            informationMapper.insertInformationByUserId(user.getUserId());
+
             return true;
         }else{
             return false;

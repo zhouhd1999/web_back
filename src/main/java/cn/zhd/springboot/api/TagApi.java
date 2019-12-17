@@ -54,6 +54,9 @@ public class TagApi {
     @RequestMapping("/delete_tag")
     public Msg<Object> deleteTag(Integer tagId)
     {
+
+        //先将文章类型更新为归档，然后再删除tag标签
+        //这些应该再服务层实现
         if(tagService.deleteTag(tagId))
         {
             if(articleService.updateArticleStateByTag(0,tagId))
