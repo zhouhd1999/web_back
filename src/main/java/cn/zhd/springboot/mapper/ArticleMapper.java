@@ -59,7 +59,7 @@ import java.util.List;
     @Update("UPDATE article SET article_like = article_like + 1 WHERE article_id = #{articleId}")
     int likeArticle(Integer articleId);
     //根据article_id 更改statie的值。
-    @Update("UPDATE article SET article_state = {#articleState} WHERE article_id = {#articleId}")
+    @Update("UPDATE article SET article_state = #{articleState} WHERE article_id = #{articleId}")
     boolean updateArticleState(Integer articleState, Integer articleId);
 
     //根据tag_id 更改 static的值

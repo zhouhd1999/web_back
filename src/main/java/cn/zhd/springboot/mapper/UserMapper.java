@@ -31,4 +31,5 @@ public interface UserMapper {
 
     @Update("UPDATE user SET user_permission = #{userPermission} WHERE user_account = #{userAccount}")
     boolean updateUserPermission(User user);
+  // @Delete("")
 }

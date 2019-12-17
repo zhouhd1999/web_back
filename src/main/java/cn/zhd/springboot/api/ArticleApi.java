@@ -95,6 +95,16 @@ public class ArticleApi {
         }
     }
 
+    @RequestMapping("/update_article_State_By_Tag")
+    public Msg<Object> updateArticleStateByTag(Integer state,Integer tagId){
+        if(articleService.updateArticleStateByTag(state,tagId)) {
+            return ResultUtil.success();
+        }
+        else{
+            return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+
+    }
 
     @RequestMapping("/get_article_by_like")
     public Msg<Object> getArticleByLike(){
