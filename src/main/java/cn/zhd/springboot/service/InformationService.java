@@ -7,7 +7,7 @@ public interface InformationService {
 
     Information getInformationByUserId(Integer userId);
 
-    public boolean updateHead(Integer userId, MultipartFile file);
+    boolean updateHead(Integer userId, MultipartFile file);
 
     void updateInformation(Information information);
 

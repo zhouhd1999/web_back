@@ -52,7 +52,7 @@ import java.util.List;
     @Delete("DELETE FROM article WHERE article_id = #{articleId}")
     int deleteArticle(Integer articleId);
     //修改文章
-    @Update("UPDATE article SET tag_id = #{tagId},article_name = #{articleName}, article_content = #{articleContent},article_state=#{articleState},article_preview_img=#{articlePreviewImg} WHERE article_id = #{articleId}")
+    @Update("UPDATE article SET tag_id = #{tagId},article_name = #{articleName},article_date_time = #{articleDateTime} ,article_content = #{articleContent} WHERE article_id = #{articleId}")
     int updateArticle(Article article);
 
     //文章的赞数+1
