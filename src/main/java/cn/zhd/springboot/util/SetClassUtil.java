@@ -17,6 +17,7 @@ public class SetClassUtil {
     @Autowired
     private TagService tagService;
 
+    private DiscussionService discussionService;
     public static SetClassUtil setClassUtil;
 
     @PostConstruct
@@ -39,4 +40,18 @@ public class SetClassUtil {
         }
         return allArticle;
     }
+    public static List<AllDiscussion> getAllDiscussion(List<Discussion> discussions)
+    {
+        List<AllDiscussion> allDiscussions = new ArrayList<>();
+        for(int i=0; i<discussions.size(); i++)
+        {
+            AllDiscussion tDiscussion = new AllDiscussion();
+            tDiscussion.setDiscussion(discussions.get(i));
+            String nickname = setClassUtil.userService.getNicknameByUserId(discussions.get(i).getUserId());
+            tDiscussion.setNickName(nickname);
+            allDiscussions.add(tDiscussion);
+        }
+        return allDiscussions;
+    }
+
 }

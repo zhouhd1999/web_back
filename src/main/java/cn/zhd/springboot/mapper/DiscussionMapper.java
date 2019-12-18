@@ -15,7 +15,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface DiscussionMapper {
-    @Select("SELECT * FROM discussion WHERE article_id = #{articleId} ORDER BY user_id DESC")
+    @Select("SELECT * FROM discussion WHERE article_id = #{articleId} ORDER BY discussion_date_time DESC")
     List<Discussion>getDiscussionByAid(Integer articleId);
 
     @Insert("INSERT INTO discussion(user_id,discussion_content,discussion_date_time,article_id,replay_id,replay_user_id)VALUES(#{userId},#{discussionContent},#{discussionDateTime},#{articleId},#{replayId},#{replayUserId})")

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -70,6 +72,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public boolean updateArticle(Article article) {
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = df.format(date);
+        article.setArticleDateTime(time);
         return articleMapper.updateArticle(article) != 0;
     }
 

@@ -1,10 +1,12 @@
 package cn.zhd.springboot.api;
 
+import cn.zhd.springboot.entity.AllDiscussion;
 import cn.zhd.springboot.entity.Discussion;
 import cn.zhd.springboot.enums.ResultEnum;
 import cn.zhd.springboot.service.DiscussionService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
+import cn.zhd.springboot.util.SetClassUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +30,8 @@ public class DiscussionApi {
     @RequestMapping("/get_discussion")
     public Msg<Object> getDiscussion(Integer articleId){
         List<Discussion> discussion = discussionService.getDiscussionByAid(articleId);
-        return ResultUtil.success(discussion);
+        List<AllDiscussion> allDiscussions = SetClassUtil.getAllDiscussion(discussion);
+        return ResultUtil.success(allDiscussions);
     }
 
     @RequestMapping("/submit_discussion")
