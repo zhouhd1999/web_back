@@ -3,10 +3,9 @@ package cn.zhd.springboot.api;
 import cn.zhd.springboot.entity.AllArticle;
 import cn.zhd.springboot.entity.Article;
 import cn.zhd.springboot.entity.Information;
+import cn.zhd.springboot.entity.User;
 import cn.zhd.springboot.enums.ResultEnum;
-import cn.zhd.springboot.service.ArticleService;
-import cn.zhd.springboot.service.InformationService;
-import cn.zhd.springboot.service.UserArticleAttitudeService;
+import cn.zhd.springboot.service.*;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
 import cn.zhd.springboot.util.SetClassUtil;
@@ -26,12 +25,15 @@ public class ArticleApi {
 
     private final ArticleService articleService;
     private final UserArticleAttitudeService userArticleAttitudeService;
-
+    private final TagService tagService;
+    private final UserService userService;
     @Autowired
-    public ArticleApi(ArticleService articleService, UserArticleAttitudeService userArticleAttitudeService, InformationService informationService)
+    public ArticleApi(ArticleService articleService, UserArticleAttitudeService userArticleAttitudeService, TagService tagService, UserService userService)
     {
         this.articleService = articleService;
         this.userArticleAttitudeService = userArticleAttitudeService;
+        this.tagService = tagService;
+        this.userService = userService;
     }
 
     @RequestMapping("/get_article")
@@ -125,7 +127,17 @@ public class ArticleApi {
 
     @RequestMapping("/get_article_by_article_id")
     public Msg<Object> getArticleByArticleId(Integer articleId){
-        return ResultUtil.success(articleService.getArticleByArticleId(articleId));
+        Article articles = articleService.getArticleByArticleId(articleId);
+    //    List<AllArticle> allArticle = SetClassUtil.getAllArticle(articles);
+        String tagName = tagService.getTagNameByTagId(articles.getTagId());
+        String nickName = userService.getNicknameByUserId(articles.getUserId());
+        AllArticle article = new AllArticle();
+        article.setArticle(articles);
+        article.setNickname(nickName);
+        article.setTagName(tagName);
+
+        return ResultUtil.success(article);
+
     }
 
 
