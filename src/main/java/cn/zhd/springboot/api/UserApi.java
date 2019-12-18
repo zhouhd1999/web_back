@@ -1,7 +1,9 @@
 package cn.zhd.springboot.api;
 
+import cn.zhd.springboot.entity.Directory;
 import cn.zhd.springboot.entity.User;
 import cn.zhd.springboot.enums.ResultEnum;
+import cn.zhd.springboot.service.DirectoryService;
 import cn.zhd.springboot.service.InformationService;
 import cn.zhd.springboot.service.UserService;
 import cn.zhd.springboot.util.Msg;
@@ -20,10 +22,12 @@ public class UserApi {
 
     private final InformationService informationService;
 
+    private  final DirectoryService directoryService;
     @Autowired
-    public UserApi(UserService userService, InformationService informationService) {
+    public UserApi(UserService userService, InformationService informationService, DirectoryService directoryService) {
         this.userService=userService;
         this.informationService = informationService;
+        this.directoryService = directoryService;
     }
 
     @RequestMapping("/get_all")
@@ -42,22 +46,15 @@ public class UserApi {
         }
     }
 
-//    @RequestMapping("/getUserMessage")
-//    public Msg<Object> getUserMessage(String userId){
-//        User user = userService.getUserByUserId(userId);
-//        if(userService.getUserByUserId(user.getUserId())!=null){
-//            return ResultUtil.success(user);
-//        }else{
-//            return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);
-//        }
-//    }
-
     @RequestMapping("/insert_user")
     public Msg<Object> insertUser(User user){
         if (userService.insertUser(user)){
            Integer userId =userService.getUserByUserAccount(user.getUserAccount()).getUserId();
 
            informationService.insertInformationByUserId(userId);
+           directoryService.insertDirectory(userId);
+
+
             return ResultUtil.success();
         }else{
             return ResultUtil.error(ResultEnum.ACCOUNT_EXIST);

@@ -23,4 +23,9 @@ public class DirectoryServiceImpl implements DirectoryService {
     public boolean saveDirectory(Directory directory) {
         return  directoryMapper.saveDirectory(directory);
     }
+
+    @Override
+    public boolean insertDirectory(Integer userId) {
+        return directoryMapper.insertDirectory(userId);
+    }
 }
