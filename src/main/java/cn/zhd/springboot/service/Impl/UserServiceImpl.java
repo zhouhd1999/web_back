@@ -33,6 +33,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginByUserAccount(String userAccount,String password){
         User user = userMapper.getUserByUserAccount(userAccount);
+        if(user == null)
+        {
+            return null;
+        }
         if (password.equals(user.getUserPassword())){
             user.setUserPassword("******");
             return user;
@@ -52,7 +56,7 @@ public class UserServiceImpl implements UserService {
     public boolean insertUser(User user){
         if(userMapper.getUserByUserAccount(user.getUserAccount())==null){
             userMapper.insertUser(user);
-            //informationMapper.insertInformationByUserId(user.getUserId());
+           // informationMapper.insertInformationByUserId(user.getUserId());
 
             return true;
         }else{
