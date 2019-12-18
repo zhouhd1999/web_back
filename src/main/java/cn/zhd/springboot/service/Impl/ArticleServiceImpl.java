@@ -94,6 +94,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public boolean updateArticleTagByTag(Integer tagId) {
+        return articleMapper.updateArticleTagByTag(tagId);
+    }
+
+    @Override
     public boolean insertArticlePreviewImg(MultipartFile file){
         String url = "D:/Web/second/src/assets/article_img/";
         return FileSaveUtil.filesave(file,url);

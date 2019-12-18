@@ -31,9 +31,9 @@ public class TagApi {
         return ResultUtil.success(tagService.getAllTag());
     }
     @RequestMapping("/insert_tag")
-    public Msg<Object>  insertTag(String tagName)
+    public Msg<Object>  insertTag(String tagName,Integer tagType)
     {
-        if(tagService.insertTag(tagName))
+        if(tagService.insertTag(tagName,tagType))
         {
             return ResultUtil.success();
         }
@@ -54,22 +54,30 @@ public class TagApi {
     @RequestMapping("/delete_tag")
     public Msg<Object> deleteTag(Integer tagId)
     {
+        try{
+            //先将文章类型更新为归档，然后再删除tag标签
+            //这些应该再服务层实现
+//            if(articleService.updateArticleStateByTag(0,tagId))
+//            {
+            articleService.updateArticleTagByTag(tagId);
+                if(tagService.deleteTag(tagId))
+//                if(articleService.updateArticleStateByTag(0,tagId))
+                {
+                    return ResultUtil.success();
+                }
+                else{
+                    return ResultUtil.error(ResultEnum.TAG_DELETE_ERROR);
 
-        //先将文章类型更新为归档，然后再删除tag标签
-        //这些应该再服务层实现
-        if(tagService.deleteTag(tagId))
+                }
+//            }
+//            else{
+//                return ResultUtil.error(ResultEnum.ARTICLE_UPDATE_ERROR);
+//            }
+        }catch (Exception e)
         {
-            if(articleService.updateArticleStateByTag(0,tagId))
-            {
-                return ResultUtil.success();
-            }
-            else{
-                return ResultUtil.error(ResultEnum.ARTICLE_UPDATE_ERROR);
-            }
+            e.printStackTrace();
         }
-        else{
-            return ResultUtil.error(ResultEnum.TAG_DELETE_ERROR);
-        }
+        return ResultUtil.success();
     }
 
 }

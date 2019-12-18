@@ -58,13 +58,18 @@ import java.util.List;
     //文章的赞数+1
     @Update("UPDATE article SET article_like = article_like + 1 WHERE article_id = #{articleId}")
     int likeArticle(Integer articleId);
-    //根据article_id 更改statie的值。
+    //根据article_id 更改state的值。
     @Update("UPDATE article SET article_state = #{articleState} WHERE article_id = #{articleId}")
     boolean updateArticleState(Integer articleState, Integer articleId);
 
     //根据tag_id 更改 static的值
     @Update("UPDATE article SET article_state = #{state} WHERE tag_id = #{tagId}")
     boolean updateArticleStateByTag(Integer state,Integer tagId);
+
+    //标签被删除后，标签下的文章自动归入未归档类中。
+    @Update("UPDATE article SET tag_id = 0 WHERE tag_id = #{tagId}")
+    boolean updateArticleTagByTag(Integer tagId);
+
 
     @Select("SELECT * FROM `article` ,tag where `article`.tag_id = tag.tag_id and tag_type = #{tagType}")
     List<Article>  getArticleByTagType(Integer tagType);

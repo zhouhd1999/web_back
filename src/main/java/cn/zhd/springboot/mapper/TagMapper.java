@@ -15,8 +15,8 @@ public interface TagMapper {
     List<Tag> getAllTag();
     @Select("SELECT tag_name FROM tag WHERE tag_id = #{tagId}")
     String getTagNameByTagId(Integer tagId);
-    @Insert("INSERT INTO tag(tag_name) VALUES(#{tagName})")
-    Boolean insertTag(String tagName);
+    @Insert("INSERT INTO tag(tag_name,tag_type) VALUES(#{tagName},#{tagType})")
+    Boolean insertTag(String tagName, Integer tagType);
     @Update("UPDATE tag SET tag_name = #{tagName} WHERE tag_id = #{tagId}")
     Boolean updateTag(String tagName,Integer tagId);
     @Delete("DELETE FROM tag WHERE tag_id = #{tagId}")

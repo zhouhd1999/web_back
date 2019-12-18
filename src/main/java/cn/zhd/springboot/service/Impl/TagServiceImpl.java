@@ -30,8 +30,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public boolean insertTag(String tagName) {
-        return tagMapper.insertTag(tagName);
+    public boolean insertTag(String tagName,Integer tagType) {
+        return tagMapper.insertTag(tagName,tagType);
     }
 
     @Override

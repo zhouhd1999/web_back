@@ -44,8 +44,8 @@ public enum ResultEnum {
     TAG_DELETE_ERROR(503,"tag delete error"),
 
 
-    ARTICLE_UPDATE_ERROR(601,"article delete error"),
-    ARTICLE_INSERT_ERROR(602,"article delete error"),
+    ARTICLE_UPDATE_ERROR(601,"article update error"),
+    ARTICLE_INSERT_ERROR(602,"article insert error"),
     ARTICLE_DELETE_ERROR(603,"article delete error"),
 
 

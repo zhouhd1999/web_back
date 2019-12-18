@@ -8,7 +8,7 @@ public interface TagService {
     List<Tag> getAllTag();
     String getTagNameByTagId(Integer tagId);
 
-    boolean insertTag(String tagName);
+    boolean insertTag(String tagName,Integer tagType);
     boolean updateTag(String tagName,Integer tagId);
     boolean deleteTag(Integer tagId);
 
