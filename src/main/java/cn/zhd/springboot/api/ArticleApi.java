@@ -124,6 +124,14 @@ public class ArticleApi {
             return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
         }
     }
+    @RequestMapping("/hate_article")
+    public Msg<Object> hateArticle(Integer articleId){
+        if (articleService.hateArticle(articleId)){
+            return ResultUtil.success();
+        }else{
+            return ResultUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+    }
 
     @RequestMapping("/get_article_by_article_id")
     public Msg<Object> getArticleByArticleId(Integer articleId){

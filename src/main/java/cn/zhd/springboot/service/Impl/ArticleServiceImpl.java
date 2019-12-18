@@ -79,6 +79,21 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public boolean hateArticle(Integer articleId) {
+        return articleMapper.hateArticle(articleId)!=0;
+    }
+
+    @Override
+    public boolean likeArticle1(Integer articleId) {
+        return articleMapper.likeArticle1(articleId)!=0;
+    }
+
+    @Override
+    public boolean hateArticle1(Integer articleId) {
+        return articleMapper.hateArticle1(articleId)!=0;
+    }
+
+    @Override
     public Article getArticleByArticleId(Integer articleId) {
         return articleMapper.getArticleByArticleId(articleId);
     }

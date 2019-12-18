@@ -2,6 +2,7 @@ package cn.zhd.springboot.api;
 
 import cn.zhd.springboot.entity.UserArticleAttitude;
 import cn.zhd.springboot.enums.ResultEnum;
+import cn.zhd.springboot.service.ArticleService;
 import cn.zhd.springboot.service.UserArticleAttitudeService;
 import cn.zhd.springboot.util.Msg;
 import cn.zhd.springboot.util.ResultUtil;
@@ -15,10 +16,12 @@ import javax.xml.transform.Result;
 @RestController
 public class UserArticleAttitudeApi {
     private final UserArticleAttitudeService userArticleAttitudeService;
+    private final ArticleService articleService;
     @Autowired
-    public UserArticleAttitudeApi(UserArticleAttitudeService userArticleAttitudeService)
+    public UserArticleAttitudeApi(UserArticleAttitudeService userArticleAttitudeService, ArticleService articleService)
     {
         this.userArticleAttitudeService = userArticleAttitudeService;
+        this.articleService = articleService;
     }
     @RequestMapping("/get_attitude")
     public Msg<Object> getUserAttitude(Integer userId, Integer articleId)
@@ -67,6 +70,26 @@ public class UserArticleAttitudeApi {
         {
             return ResultUtil.error(ResultEnum.ATTITUDE_DATABASE_ERROR);
         }
-        return ResultUtil.success();
+
+        if(currentAttitude ==-1 && futureAttitude ==1) //踩-》赞
+        {
+            articleService.likeArticle(articleId);
+            articleService.hateArticle1(articleId);
+            //踩-1.赞+1
+        }
+        else if(currentAttitude == 0 && futureAttitude == 1)
+        {
+            articleService.likeArticle(articleId);
+        }
+        else if(currentAttitude== 0 && futureAttitude == -1)
+        {
+            articleService.hateArticle(articleId);
+        }
+        else if(currentAttitude == 1 && futureAttitude == -1)
+        {
+            articleService.likeArticle1(articleId);
+            articleService.hateArticle(articleId);
+        }
+       return ResultUtil.success();
     }
 }

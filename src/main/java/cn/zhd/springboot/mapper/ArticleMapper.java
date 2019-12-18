@@ -58,7 +58,20 @@ import java.util.List;
     //文章的赞数+1
     @Update("UPDATE article SET article_like = article_like + 1 WHERE article_id = #{articleId}")
     int likeArticle(Integer articleId);
-    //根据article_id 更改state的值。
+    //文章的踩数+1
+    @Update("UPDATE article SET article_hate = article_hate + 1 WHERE article_id = #{articleId}")
+    int hateArticle(Integer articleId);
+
+    //文章的赞数-1
+    @Update("UPDATE article SET article_like = article_like - 1 WHERE article_id = #{articleId}")
+    int likeArticle1(Integer articleId);
+    //文章的踩数-1
+    @Update("UPDATE article SET article_hate = article_hate - 1 WHERE article_id = #{articleId}")
+    int hateArticle1(Integer articleId);
+
+
+
+        //根据article_id 更改state的值。
     @Update("UPDATE article SET article_state = #{articleState} WHERE article_id = #{articleId}")
     boolean updateArticleState(Integer articleState, Integer articleId);
 
