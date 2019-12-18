@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     public boolean insertUser(User user){
         if(userMapper.getUserByUserAccount(user.getUserAccount())==null){
             userMapper.insertUser(user);
-            informationMapper.insertInformationByUserId(user.getUserId());
+            //informationMapper.insertInformationByUserId(user.getUserId());
 
             return true;
         }else{

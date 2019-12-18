@@ -26,7 +26,7 @@ import java.util.List;
     List<Article> getArticleByDateTime(String articleDateTime);
 
     //获得某类标签的文章（分类功能）
-    @Select("SELECT * FROM article WHERE tag_id = #{tagId}")
+    @Select("SELECT * FROM article WHERE tag_id = #{tagId} ORDER BY article_date_time DESC")
     List<Article> getArticleByTag(int tagId);
 
     //获得按照点击数排序的文章

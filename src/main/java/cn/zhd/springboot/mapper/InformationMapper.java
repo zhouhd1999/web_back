@@ -15,7 +15,7 @@ public interface InformationMapper {
     @Select("SELECT * FROM information WHERE user_id=#{userId}")
     Information getInformationByUserId(Integer userId);
 
-    @Update("UPDATE information SET info_age=#{infoAge},info_phone_number=#{infoPhoneNumber},info_profession=#{infoProfession},info_introduction=#{infoIntroduction},info_head_url=#{infoHeadUrl} WHERE user_id=#{userId}")
+    @Update("UPDATE information SET info_age=#{infoAge},info_phone_number=#{infoPhoneNumber},info_profession=#{infoProfession},info_introduction=#{infoIntroduction} WHERE user_id=#{userId}")
     void updateInformation(Information information);
 
 
